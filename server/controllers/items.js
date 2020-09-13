@@ -17,7 +17,14 @@ router.post('/api/items', function(req, res, next) {
 router.get('/api/items', function(req, res, next) {
     Item.find(function(err, items) {
         if (err) { return next(err); }
-        res.json(items);
+        var filter = req.query.name;
+        if(filter) {
+          res.json(items.filter(function (e) {
+            return filter === e.name;
+          }))
+        } else {
+          res.json({'items': items });
+      }
     })
 });
 

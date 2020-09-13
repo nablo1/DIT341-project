@@ -8,7 +8,8 @@ router.post('/api/items', function(req, res, next) {
     var item = new Item(req.body);
     item.save(function(err, item) {
         if (err) { return next(err); }
-        res.status(201).json(item);
+       res.json(item)
+
     });
 });
 
@@ -78,7 +79,9 @@ router.delete('/api/items/:id', (req, res, next) => {
     Item.remove({ _id: id })
       .exec()
       .then(result => {
-        res.status(200).json(result);
+        res.status(200).json({
+          message: 'Item deleted'
+      });
       })
       .catch(err => {
         console.log(err);

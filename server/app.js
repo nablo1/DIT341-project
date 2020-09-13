@@ -8,7 +8,7 @@ var history = require('connect-history-api-fallback');
 var itemsController = require('./controllers/items');
 
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/restaurantDBnp';
+var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://nablo:nabloq@cluster0.dyc35.mongodb.net/restaurantDB?retryWrites=true&w=majority';
 var port = process.env.PORT || 3000;
 
 // Connect to MongoDB

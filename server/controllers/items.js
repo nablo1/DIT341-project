@@ -1,4 +1,5 @@
 var express = require('express');
+const { remove } = require('../models/item');
 var router = express.Router();
 
 var Item = require('../models/item');
@@ -29,11 +30,12 @@ router.get('/api/items/:id', function(req, res, next) {
     });
 });
 
+
 router.put('/api/items/:id', function(req, res, next) {
     var id = req.params.id;
     Item.findByIdAndUpdate({_id: id}, req.body, {new:true})
     .then(function (item) {
-        res.json(Item);
+        res.json(item); 
     })
     .catch(err => {
         console.log(err);
@@ -43,11 +45,31 @@ router.put('/api/items/:id', function(req, res, next) {
       });
 });
 
+router.patch("/api/items/:id", (req, res, next) => {
+    var id = req.params.id;
+    var updates = {};
+    for (var operations of req.body) {
+      updates[operations.propName] = operations.value;
+    }
+    Item.update({ _id: id }, { $set: updates })
+      .exec()
+      .then(result => {
+        console.log(result);
+        res.status(200).json(result);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  });
+
 
 router.delete('/api/items', function(req, res, next) {
     Item.deleteMany(function(err, items) {
         if (err) { return next(err); }
-        res.json({'items': items });
+        res.json({'message':'Items are now deleted.'});
     })
 });
 

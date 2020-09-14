@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "af447695-e261-4f33-bb45-f36688bb4d02",
-		"name": "Server",
+		"_postman_id": "ee894cd3-b51a-4064-b10d-a6536e6610d8",
+		"name": "Items",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,19 +11,15 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4258e00c-b1de-4b32-bd4b-d7e58105faba",
+						"id": "33db4b63-32b5-45f2-a6c3-211ea77701c0",
 						"exec": [
 							" var jsonData = pm.response.json();\r",
 							" var itemId = jsonData._id;\r",
 							" pm.environment.set(\"item_id\", itemId);\r",
 							"\r",
-							"pm.test(\"Correct status code\", function() {\r",
-							"    pm.response.to.have.status(201);\r",
-							"});\r",
 							"\r",
-							"pm.test(\"Correct item response\", function() {\r",
-							"    pm.expect(jsonData.name).to.eql(\"Margherita\");\r",
-							"    pm.expect(jsonData.price).to.eql(75);\r",
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200,201);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -35,7 +31,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Margherita\",\r\n    \"price\": 75\r\n}",
+					"raw": "{\r\n    \"name\" : \"Fish\",\r\n    \"price\" : 80\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -59,55 +55,227 @@
 		},
 		{
 			"name": "Get an item",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": ""
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "51cd2a82-d1dc-40c4-8cd4-81490e9f6670",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get all items",
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete an item",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete all items",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": ""
+					"raw": "http://localhost:3000/api/items/{{item_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"items",
+						"{{item_id}}"
+					]
 				}
 			},
 			"response": []
 		},
 		{
 			"name": "Update an item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f6c81b1-07a2-48c5-9a7a-cf67e31e146e",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"price\" : 90\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/items/{{item_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"items",
+						"{{item_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a property of an item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7fa389a9-8467-4a1a-b2ee-94d459a58ba7",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\"propName\" : \"price\" , \"value\" : 95}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/items/{{item_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"items",
+						"{{item_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a845bd82-6bd2-4b0a-a3b8-987acdc50971",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:3000/api/items/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"items",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8a3a7a39-3241-4fb2-8a98-85afdd242745",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/items/{{item_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"items",
+						"{{item_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete all items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2f55fb3-a734-4f85-b935-e10e752be6a1",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"items"
+					]
 				}
 			},
 			"response": []

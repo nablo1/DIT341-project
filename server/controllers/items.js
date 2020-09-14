@@ -2,12 +2,11 @@ const e = require('express');
 var express = require('express');
 const { remove } = require('../models/item');
 var router = express.Router();
-
 var Item = require('../models/item');
 
 router.post('/api/items', function(req, res, next) {
     var item = new Item(req.body);
-    item.save(function(err, item) {
+    item.save(function(err, items) {
         if (err) { return next(err); }
        res.json(items)
     });

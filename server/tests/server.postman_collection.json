@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "ee894cd3-b51a-4064-b10d-a6536e6610d8",
-		"name": "Items",
+		"name": "Server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -17,9 +17,20 @@
 							" var itemId = jsonData._id;\r",
 							" pm.environment.set(\"item_id\", itemId);\r",
 							"\r",
+							"pm.test(\"Correct status code\", () => {\r",
+							"  pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+							"});\r",
 							"\r",
-							"pm.test(\"Correct status code\", function() {\r",
-							"    pm.response.to.have.status(200,201);\r",
+							"pm.test(\"The response has all properties\", () => {\r",
+							"    var responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson.name).to.eql('Fish');\r",
+							"    pm.expect(responseJson.price).to.eql(80);\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test data type of the response\", () => {\r",
+							"  pm.expect(jsonData.name).to.be.a(\"string\");\r",
+							"  pm.expect(jsonData.price).to.be.a(\"number\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -48,41 +59,6 @@
 					"path": [
 						"api",
 						"items"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get an item",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "51cd2a82-d1dc-40c4-8cd4-81490e9f6670",
-						"exec": [
-							"pm.test(\"Correct status code\", function() {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/items/{{item_id}}",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"items",
-						"{{item_id}}"
 					]
 				}
 			},
@@ -212,6 +188,264 @@
 			"response": []
 		},
 		{
+			"name": "Get an item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "51cd2a82-d1dc-40c4-8cd4-81490e9f6670",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/items/{{item_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"items",
+						"{{item_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create an order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5333b0ef-484d-4494-a73c-e556091c8c31",
+						"exec": [
+							" var jsonData = pm.response.json();\r",
+							" var orderId = jsonData._id;\r",
+							" pm.environment.set(\"order_id\", orderId);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200,201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "items",
+							"value": "5f5f731fa1e468423c578fbc",
+							"type": "text"
+						},
+						{
+							"key": "items",
+							"value": "5f5f7327a1e468423c578fbd",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb8aa129-4859-4431-9036-af4a479555bb",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/orders/{{order_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders",
+						"{{order_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create an item in an existing order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bf8b0d88-b40b-4db2-a770-8d1f02eed46f",
+						"exec": [
+							" var jsonData = pm.response.json();\r",
+							" var itemId = jsonData._id;\r",
+							" pm.environment.set(\"item_id\", itemId);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200,201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Tuna\",\r\n    \"price\" : 45\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/orders/{{order_id}}/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders",
+						"{{order_id}}",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get items of an order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/orders/{{order_id}}/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders",
+						"{{order_id}}",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an item with a specific ID of an order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "415f4d4c-c7cc-4f82-a439-720123f5f6e4",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/orders/{{order_id}}/items/{{item_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders",
+						"{{order_id}}",
+						"items",
+						"{{item_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete an item",
 			"event": [
 				{
@@ -241,6 +475,187 @@
 						"api",
 						"items",
 						"{{item_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create an item Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8a42c156-a233-4b58-86f0-87a055bba45b",
+						"exec": [
+							" var jsonData = pm.response.json();\r",
+							" var itemId = jsonData._id;\r",
+							" pm.environment.set(\"item_id\", itemId);\r",
+							"\r",
+							"pm.test(\"Correct status code\", () => {\r",
+							"  pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response has all properties\", () => {\r",
+							"    var responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson.name).to.eql('Fish');\r",
+							"    pm.expect(responseJson.price).to.eql(80);\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Fish\",\r\n    \"price\" : 80\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an item with a specific ID of an order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "96842ecd-d480-4201-8ce0-eac85dcfb6cc",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/orders/{{order_id}}/items/{{item_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders",
+						"{{order_id}}",
+						"items",
+						"{{item_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create an item Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dd7c3a03-0d22-475c-955e-a5783b8f8cf4",
+						"exec": [
+							" var jsonData = pm.response.json();\r",
+							" var itemId = jsonData._id;\r",
+							" pm.environment.set(\"item_id\", itemId);\r",
+							"\r",
+							"pm.test(\"Correct status code\", () => {\r",
+							"  pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response has all properties\", () => {\r",
+							"    var responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson.name).to.eql('Fish');\r",
+							"    pm.expect(responseJson.price).to.eql(80);\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Fish\",\r\n    \"price\" : 80\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete all items of an order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a895b229-de77-4240-92b0-7306571f1647",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/orders/{{order_id}}/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders",
+						"{{order_id}}",
+						"items"
 					]
 				}
 			},
@@ -279,6 +694,97 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Delete an order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "939fad80-26e4-413e-aca6-e0c981759e59",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/orders/{{order_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders",
+						"{{order_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete all orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e8c4abea-78e6-498d-912d-daa4ce024358",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b25cc270-e332-45e1-b759-024d49c45811",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d21f6876-c90f-4551-9167-c3323c4f3878",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"protocolProfileBehavior": {}

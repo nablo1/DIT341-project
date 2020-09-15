@@ -7,21 +7,29 @@ var Item = require('../models/item');
 var mongoose = require('mongoose');
 
 router.post('/api/orders', function(req, res, next) {
-    /*var items = req.body.items;
-    var item = Item.findById(req.body.item.id);
-    if(!item) {
-        return res.status(404).json({'message' : 'No items were found'});
-    }*/
-
-    var order = new Order({
-        _id: new mongoose.Types.ObjectId(),
-        items: req.body.items,
-        time: req.body.time
+    Item.find( {'_id' : {$in : req.body.items} }, function (err, items) {
+        if (!items) {
+            return res.status(404).json({
+              message: "One or more of the items are not found"
+            });
+        }
     });
+    var order = new Order(req.body);
     order.save( function(err, order) {
         if (err) { return next(err); }
        res.json(order)
     });
+});
+
+router.post('/api/orders/:id/items', function(req, res, next) {
+    var order = Order.findById(req.params.id);
+    var item = new Item(req.body);
+    item.save(function(err, items) {
+        if (err) { return next(err); }
+       res.json(items)
+    });
+    
+    
 });
 
 router.get('/api/orders', function(req, res, next) {
@@ -46,6 +54,52 @@ router.get('/api/orders/:id', function(req, res, next) {
         res.status(500).json({ error: err});
       });
 });
+
+router.get('/api/orders/:id/items', function(req, res, next) {
+    Order.findById(req.params.id).select('items').populate('items').exec()
+    .then(order => {
+        if (!order) {
+            return res.status(404).json({
+              message: "Order not found"
+            });
+          }
+          res.status(200).json(order)
+    }).catch(err => {
+        res.status(500).json({ error: err});
+      });
+});
+
+router.get('/api/orders/:id/items/:itemId', function(req, res, next) {
+    Item.findById(req.params.itemId).exec()
+    .then(item => {
+        if (!item) {
+            return res.status(404).json({
+              message: "Item not found"
+            });
+          }
+          res.status(200).json(item)
+    }).catch(err => {
+        res.status(500).json({ error: err});
+      });
+});
+
+router.delete('/api/orders/:id', function(req, res, next) {
+    Order.findByIdAndRemove(req.params.id, req.body, function (err, order) {
+        if (err) { return next(err); }
+        if (!order) {
+            return res.status(404).json({'message': 'order not found'});
+        }
+            res.json({'message': 'order deleted'});
+      });
+         
+});
+
+router.delete('/api/orders', function(req, res, next) {
+    Order.deleteMany(function(err, orders) {
+        if (err) { return next(err); }
+        res.json({'message':'Items are now deleted.'});
+    })
+  });
 
 
 

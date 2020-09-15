@@ -3,6 +3,7 @@ var express = require('express');
 const { remove } = require('../models/item');
 var router = express.Router();
 var Item = require('../models/item');
+var mongoose = require('mongoose');
 
 router.post('/api/items', function(req, res, next) {
     var item = new Item(req.body);

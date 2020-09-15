@@ -22,12 +22,27 @@ router.post('/api/orders', function(req, res, next) {
 });
 
 router.post('/api/orders/:id/items', function(req, res, next) {
-    var order = Order.findById(req.params.id);
     var item = new Item(req.body);
-    item.save(function(err, items) {
+    item.save(function(err, item) {
         if (err) { return next(err); }
-       res.json(items)
+       res.json(item);
     });
+
+   /* return Order.findByIdAndUpdate(
+      req.params.id,
+      { $push: { "items": item._id } },
+      { new: true, useFindAndModify: false }
+  );*/
+
+  Order.findByIdAndUpdate(
+    req.params.id,
+    {$push: {"items":{_id: item._id}}},
+    {safe: true, upsert: true, new : true},
+    function(err, model) {
+        console.log(err);
+    }
+);
+    
     
     
 });

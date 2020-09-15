@@ -28,12 +28,6 @@ router.post('/api/orders/:id/items', function(req, res, next) {
        res.json(item);
     });
 
-   /* return Order.findByIdAndUpdate(
-      req.params.id,
-      { $push: { "items": item._id } },
-      { new: true, useFindAndModify: false }
-  );*/
-
   Order.findByIdAndUpdate(
     req.params.id,
     {$push: {"items":{_id: item._id}}},
@@ -42,8 +36,6 @@ router.post('/api/orders/:id/items', function(req, res, next) {
         console.log(err);
     }
 );
-    
-    
     
 });
 
@@ -108,6 +100,25 @@ router.delete('/api/orders/:id', function(req, res, next) {
       });
          
 });
+
+router.delete('/api/orders/:id/items', function(req, res, next) {
+  Item.deleteMany(function(err, items) {
+    if (err) { return next(err); }
+    res.json({'message':'Items are now deleted.'});
+})    
+});
+
+router.delete('/api/orders/:id/items/:itemId', function(req, res, next) {
+  Item.findByIdAndRemove(req.params.itemId, req.body, function (err, item) {
+    if (err) { return next(err); }
+    if (!item) {
+        return res.status(404).json({'message': 'Item not found!'});
+    }
+        res.json({'message': 'item deleted'});
+  });
+});
+
+
 
 router.delete('/api/orders', function(req, res, next) {
     Order.deleteMany(function(err, orders) {

@@ -16,16 +16,20 @@ router.post('/api/items', function(req, res, next) {
 
 router.get('/api/items', function(req, res, next) {
     var sort = req.query.sort_by;
-    if(sort == 'price') {
-      Item.find({}).sort('price').exec(function(err, items) { 
-        if (err) { return next(err); }
-        res.json(items);
-      }); 
-    } else {
+    if(sort) {
+      if(sort == 'price') {
+        Item.find({}).sort('price').exec(function(err, items) { 
+          if (err) { return next(err); }
+          res.json(items);
+        }); 
+      } else {
+        res.status(500).json({'message' : 'Can only sort items by their price'});
+         }
+    }
+     else {
     Item.find(function(err, items) {
         if (err) { return next(err); }
         var filter = req.query.name; 
-        var sortPrice = req.query.sort;
         if(filter) {
           res.json(items.filter(function (e) {
             return filter === e.name;

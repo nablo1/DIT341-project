@@ -119,11 +119,10 @@ router.delete('/api/orders/:id/items/:itemId', function(req, res, next) {
 });
 
 
-
 router.delete('/api/orders', function(req, res, next) {
     Order.deleteMany(function(err, orders) {
         if (err) { return next(err); }
-        res.json({'message':'Items are now deleted.'});
+        res.json({'message':'Orders are now deleted.'});
     })
   });
 

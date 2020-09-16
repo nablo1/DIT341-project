@@ -15,18 +15,35 @@ router.post('/api/items', function(req, res, next) {
 
 
 router.get('/api/items', function(req, res, next) {
+    var sort = req.query.sort_by;
+    if(sort == 'price') {
+      Item.find({}).sort('price').exec(function(err, items) { 
+        if (err) { return next(err); }
+        res.json(items);
+      }); 
+    } else {
     Item.find(function(err, items) {
         if (err) { return next(err); }
-        var filter = req.query.name;
+        var filter = req.query.name; 
+        var sortPrice = req.query.sort;
         if(filter) {
           res.json(items.filter(function (e) {
             return filter === e.name;
-          }))
+        }))
         } else {
           res.json({'items': items });
       }
     })
+  }
 });
+
+/*router.get('/api/items', function(req, res, next) {
+  Item.find({}).sort('price').exec(function(err, items) { 
+    if (err) { return next(err); }
+    res.json(items);
+  }); 
+});*/
+
 
 router.get('/api/items/:id', function(req, res, next) {
     Item.findById(req.params.id, function(err, item) {

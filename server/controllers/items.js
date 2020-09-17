@@ -1,9 +1,7 @@
 const e = require('express');
 var express = require('express');
-const { remove } = require('../models/item');
 var router = express.Router();
 var Item = require('../models/item');
-var mongoose = require('mongoose');
 
 router.post('/api/items', function(req, res, next) {
     var item = new Item(req.body);
@@ -40,13 +38,6 @@ router.get('/api/items', function(req, res, next) {
     })
   }
 });
-
-/*router.get('/api/items', function(req, res, next) {
-  Item.find({}).sort('price').exec(function(err, items) { 
-    if (err) { return next(err); }
-    res.json(items);
-  }); 
-});*/
 
 
 router.get('/api/items/:id', function(req, res, next) {

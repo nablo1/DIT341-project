@@ -6,8 +6,7 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 var itemsController = require('./controllers/items');
-var orderController = require('./controllers/orders');
-var customerController = require('./controllers/customers');
+var userController = require('./controllers/users');
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://nablo:nabloq@cluster0.dyc35.mongodb.net/restaurantDB?retryWrites=true&w=majority';
 var port = process.env.PORT || 3000;
@@ -38,8 +37,7 @@ app.get('/api', function(req, res) {
 });
 
 app.use(itemsController);
-app.use(orderController);
-app.use(customerController);
+app.use(userController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {

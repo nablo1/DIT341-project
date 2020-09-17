@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "33db4b63-32b5-45f2-a6c3-211ea77701c0",
+						"id": "f99a1a26-68ef-40b4-b383-86d8fc889d58",
 						"exec": [
 							" var jsonData = pm.response.json();\r",
 							" var itemId = jsonData._id;\r",
@@ -19,13 +19,6 @@
 							"\r",
 							"pm.test(\"Correct status code\", () => {\r",
 							"  pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"The response has all properties\", () => {\r",
-							"    var responseJson = pm.response.json();\r",
-							"    pm.expect(responseJson.name).to.eql('Fish');\r",
-							"    pm.expect(responseJson.price).to.eql(80);\r",
-							"    \r",
 							"});\r",
 							"\r",
 							"pm.test(\"Test data type of the response\", () => {\r",
@@ -42,7 +35,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"Fish\",\r\n    \"price\" : 80\r\n}",
+					"raw": "{\r\n    \"name\" : \"Kotbullars\",\r\n    \"price\" : 77\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -65,12 +58,12 @@
 			"response": []
 		},
 		{
-			"name": "Update an item",
+			"name": "Get an item",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "8f6c81b1-07a2-48c5-9a7a-cf67e31e146e",
+						"id": "51cd2a82-d1dc-40c4-8cd4-81490e9f6670",
 						"exec": [
 							"pm.test(\"Correct status code\", function() {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -81,17 +74,8 @@
 				}
 			],
 			"request": {
-				"method": "PUT",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"price\" : 90\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "http://localhost:3000/api/items/{{item_id}}",
 					"protocol": "http",
@@ -188,12 +172,109 @@
 			"response": []
 		},
 		{
-			"name": "Get an item",
+			"name": "User sign up",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "51cd2a82-d1dc-40c4-8cd4-81490e9f6670",
+						"id": "0889a1b9-8026-40ee-98d2-05edab19288e",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"var userId = jsonData._id;\r",
+							"pm.environment.set(\"user_id\", userId);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Correct status code\", () => {\r",
+							"  pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"eden@nablo.com\",\r\n    \"password\" : \"eden\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User log in",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "136f85fa-eb6c-4c17-9b46-309c123e4a50",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"eden@nablo.com\",\r\n    \"password\" : \"eden\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "21276aee-f71c-4da6-9337-4be5ba444322",
 						"exec": [
 							"pm.test(\"Correct status code\", function() {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -207,7 +288,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/items/{{item_id}}",
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -215,8 +296,86 @@
 					"port": "3000",
 					"path": [
 						"api",
-						"items",
-						"{{item_id}}"
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a property of a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bcf456d6-a474-4fd5-816b-4cef0f847c2f",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\"propName\" : \"email\" , \"value\" : \"b@li.se\"}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2f6d588a-636c-45d1-9ee1-7f7251fd9bef",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
 					]
 				}
 			},
@@ -228,15 +387,15 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5333b0ef-484d-4494-a73c-e556091c8c31",
+						"id": "3e69d67d-8c00-45ff-be1b-579f7fc8f9ae",
 						"exec": [
 							" var jsonData = pm.response.json();\r",
 							" var orderId = jsonData._id;\r",
 							" pm.environment.set(\"order_id\", orderId);\r",
 							"\r",
 							"\r",
-							"pm.test(\"Correct status code\", function() {\r",
-							"    pm.response.to.have.status(200,201);\r",
+							"pm.test(\"Correct status code\", () => {\r",
+							"  pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -247,19 +406,8 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "items",
-							"value": "5f5f731fa1e468423c578fbc",
-							"type": "text"
-						},
-						{
-							"key": "items",
-							"value": "5f5f7327a1e468423c578fbd",
-							"type": "text"
-						}
-					],
+					"mode": "raw",
+					"raw": "{\r\n    \"items\" : [\r\n       \"5f63aa2fd25f4c1fe4204dc2\",\r\n       \"5f63aa38d25f4c1fe4204dc3\"\r\n    ]\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -267,7 +415,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/orders",
+					"raw": "http://localhost:3000/api/users/{{user_id}}/orders",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -275,6 +423,8 @@
 					"port": "3000",
 					"path": [
 						"api",
+						"users",
+						"{{user_id}}",
 						"orders"
 					]
 				}
@@ -301,7 +451,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/orders/{{order_id}}",
+					"raw": "http://localhost:3000/api/users/{{user_id}}/orders/{{order_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -309,6 +459,8 @@
 					"port": "3000",
 					"path": [
 						"api",
+						"users",
+						"{{user_id}}",
 						"orders",
 						"{{order_id}}"
 					]
@@ -318,11 +470,25 @@
 		},
 		{
 			"name": "Get all orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bfb1cfa5-2bda-44a2-be7b-4da1f4b56a02",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/orders",
+					"raw": "http://localhost:3000/api/users/{{user_id}}/orders",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -330,6 +496,8 @@
 					"port": "3000",
 					"path": [
 						"api",
+						"users",
+						"{{user_id}}",
 						"orders"
 					]
 				}
@@ -337,16 +505,100 @@
 			"response": []
 		},
 		{
-			"name": "Create an item in an existing order",
+			"name": "Update an order",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "bf8b0d88-b40b-4db2-a770-8d1f02eed46f",
+						"id": "a05e747f-a204-40e7-b1f3-96cb02eb3351",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"items\": [\r\n        \"5f634c4f8e20c530b8497946\"   \r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{user_id}}/orders/{{order_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}",
+						"orders",
+						"{{order_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "939fad80-26e4-413e-aca6-e0c981759e59",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{user_id}}/orders/{{order_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}",
+						"orders",
+						"{{order_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create an order Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "151df265-e558-4def-aca0-9c9b5a225dc4",
 						"exec": [
 							" var jsonData = pm.response.json();\r",
-							" var itemId = jsonData._id;\r",
-							" pm.environment.set(\"item_id\", itemId);\r",
+							" var orderId = jsonData._id;\r",
+							" pm.environment.set(\"order_id\", orderId);\r",
 							"\r",
 							"\r",
 							"pm.test(\"Correct status code\", function() {\r",
@@ -362,7 +614,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"Tuna\",\r\n    \"price\" : 45\r\n}",
+					"raw": "{\r\n    \"items\" : [\r\n       \"5f63aa2fd25f4c1fe4204dc2\",\r\n       \"5f63aa38d25f4c1fe4204dc3\"\r\n    ]\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -370,7 +622,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/orders/{{order_id}}/items",
+					"raw": "http://localhost:3000/api/users/{{user_id}}/orders",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -378,43 +630,21 @@
 					"port": "3000",
 					"path": [
 						"api",
-						"orders",
-						"{{order_id}}",
-						"items"
+						"users",
+						"{{user_id}}",
+						"orders"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get items of an order",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/orders/{{order_id}}/items",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"orders",
-						"{{order_id}}",
-						"items"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get an item with a specific ID of an order",
+			"name": "Delete all orders",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "415f4d4c-c7cc-4f82-a439-720123f5f6e4",
+						"id": "e8c4abea-78e6-498d-912d-daa4ce024358",
 						"exec": [
 							"pm.test(\"Correct status code\", function() {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -425,10 +655,10 @@
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/orders/{{order_id}}/items/{{item_id}}",
+					"raw": "http://localhost:3000/api/users/{{user_id}}/orders",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -436,10 +666,9 @@
 					"port": "3000",
 					"path": [
 						"api",
-						"orders",
-						"{{order_id}}",
-						"items",
-						"{{item_id}}"
+						"users",
+						"{{user_id}}",
+						"orders"
 					]
 				}
 			},
@@ -498,8 +727,8 @@
 							"\r",
 							"pm.test(\"The response has all properties\", () => {\r",
 							"    var responseJson = pm.response.json();\r",
-							"    pm.expect(responseJson.name).to.eql('Fish');\r",
-							"    pm.expect(responseJson.price).to.eql(80);\r",
+							"    pm.expect(responseJson.name).to.eql('Fries');\r",
+							"    pm.expect(responseJson.price).to.eql(35);\r",
 							"    \r",
 							"});"
 						],
@@ -512,7 +741,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"Fish\",\r\n    \"price\" : 80\r\n}",
+					"raw": "{\r\n    \"name\" : \"Fries\",\r\n    \"price\" : 35\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -528,133 +757,6 @@
 					"port": "3000",
 					"path": [
 						"api",
-						"items"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete an item with a specific ID of an order",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "96842ecd-d480-4201-8ce0-eac85dcfb6cc",
-						"exec": [
-							"pm.test(\"Correct status code\", function() {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/orders/{{order_id}}/items/{{item_id}}",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"orders",
-						"{{order_id}}",
-						"items",
-						"{{item_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create an item Copy 2",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "dd7c3a03-0d22-475c-955e-a5783b8f8cf4",
-						"exec": [
-							" var jsonData = pm.response.json();\r",
-							" var itemId = jsonData._id;\r",
-							" pm.environment.set(\"item_id\", itemId);\r",
-							"\r",
-							"pm.test(\"Correct status code\", () => {\r",
-							"  pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"The response has all properties\", () => {\r",
-							"    var responseJson = pm.response.json();\r",
-							"    pm.expect(responseJson.name).to.eql('Fish');\r",
-							"    pm.expect(responseJson.price).to.eql(80);\r",
-							"    \r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"Fish\",\r\n    \"price\" : 80\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/items",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"items"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete all items of an order",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "a895b229-de77-4240-92b0-7306571f1647",
-						"exec": [
-							"pm.test(\"Correct status code\", function() {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/orders/{{order_id}}/items",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"orders",
-						"{{order_id}}",
 						"items"
 					]
 				}
@@ -696,26 +798,43 @@
 			"response": []
 		},
 		{
-			"name": "Delete an order",
+			"name": "User sign up Copy",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "939fad80-26e4-413e-aca6-e0c981759e59",
+						"id": "03ef6282-c298-44ad-a97e-7497bc974237",
 						"exec": [
-							"pm.test(\"Correct status code\", function() {\r",
-							"    pm.response.to.have.status(200);\r",
+							"var jsonData = pm.response.json();\r",
+							"var userId = jsonData._id;\r",
+							"pm.environment.set(\"user_id\", userId);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Correct status code\", () => {\r",
+							"  pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
 							"});"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
 			"request": {
-				"method": "DELETE",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"andy@nablo.com\",\r\n    \"password\" : \"andy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:3000/api/orders/{{order_id}}",
+					"raw": "http://localhost:3000/api/users/signup",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -723,20 +842,20 @@
 					"port": "3000",
 					"path": [
 						"api",
-						"orders",
-						"{{order_id}}"
+						"users",
+						"signup"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Delete all orders",
+			"name": "Delete a user",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "e8c4abea-78e6-498d-912d-daa4ce024358",
+						"id": "ab5ad68e-d652-40a4-b35d-4281401d7b4f",
 						"exec": [
 							"pm.test(\"Correct status code\", function() {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -750,7 +869,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/orders",
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -758,7 +877,42 @@
 					"port": "3000",
 					"path": [
 						"api",
-						"orders"
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c3d46c8d-af1b-4cea-8495-dd586555cc1b",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
 					]
 				}
 			},

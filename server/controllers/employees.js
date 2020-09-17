@@ -9,9 +9,9 @@ var jwt = require('jsonwebtoken');
 
 
 
-//Employee Login
+//Employee Sign up
 
-router.post('/api/login', function (req, res, next){
+router.post('/api/signup', function (req, res, next){
     Employee.findOne({'Email': req.body.email}, function (err, employee){
         if (employee){
             var err = new Error('Email already exists! Please try again.');
@@ -43,6 +43,51 @@ router.post('/api/login', function (req, res, next){
         }
     })
 })
+
+router.post('/api/login', function(req, res, next) {
+    Employee.find({ email: req.body.email })
+      .exec()
+      .then(employee => {
+        if (employee.length < 1) {
+          return res.status(401).json({
+            message: "Error!"
+          });
+        }
+        bcrypt.compare(req.body.password, employee[0].password, (err, result) => {
+          if (err) {
+            return res.status(401).json({
+              message: "Error!"
+            });
+          }
+          if (result) {
+            const token = jwt.sign(
+              {
+                email: emplyee[0].email,
+              },
+              process.env.JWT_KEY,
+              {
+                  expiresIn: "5h"
+              }
+            );
+            return res.status(200).json({
+              message: "Successful",
+              token: token
+            });
+          }
+          res.status(401).json({
+            message: "Error"
+          });
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  });
+
+
 
 // Get all employees
 

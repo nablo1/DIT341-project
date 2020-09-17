@@ -182,6 +182,17 @@ router.delete('/api/users/:id/orders/', function(req, res, next) {
     })
   });
 
+  router.put('/api/users/:id', function(req, res, next) {
+    User.findByIdAndUpdate(req.params.id, req.body, {new:true}, function (err, user) {
+      if (err) { return next(err); }
+      if (!user) {
+          return res.status(404).json({'message': 'User not found!'});
+      }
+          res.json(user);
+    });
+    
+  });
+
 router.patch("/api/users/:id", (req, res, next) => {
     var id = req.params.id;
     var updates = {};

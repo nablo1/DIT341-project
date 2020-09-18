@@ -200,7 +200,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"eden@nablo.com\",\r\n    \"password\" : \"eden\"\r\n}",
+					"raw": "{\r\n    \"email\": \"thiago@nablo.com\",\r\n    \"password\" : \"thiago\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -245,7 +245,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"eden@nablo.com\",\r\n    \"password\" : \"eden\"\r\n}",
+					"raw": "{\r\n    \"email\": \"thiago@nablo.com\",\r\n    \"password\" : \"thiago\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -263,6 +263,84 @@
 						"api",
 						"users",
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7dab7820-e2ea-41db-976b-a328e624bb61",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"notthiago@nablo.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2f6d588a-636c-45d1-9ee1-7f7251fd9bef",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
 					]
 				}
 			},
@@ -342,40 +420,6 @@
 						"api",
 						"users",
 						"{{user_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get all users",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "2f6d588a-636c-45d1-9ee1-7f7251fd9bef",
-						"exec": [
-							"pm.test(\"Correct status code\", function() {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"users"
 					]
 				}
 			},

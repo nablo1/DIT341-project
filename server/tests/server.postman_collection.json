@@ -32,10 +32,16 @@
 			],
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRoaWFnb0BuYWJsby5jb20iLCJfaWQiOiI1ZjY0ZTUyNjUxYTM5MTE1YTRhMzQ4M2QiLCJpYXQiOjE2MDA1Mjc0MjUsImV4cCI6MTYwMDUzMTAyNX0.T7WH_InBnGg3V-BoRskwy22aVxQ-WGQvBsZJV9-SkFg",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"Kotbullars\",\r\n    \"price\" : 77\r\n}",
+					"raw": "{\r\n    \"name\" : \"Burger\",\r\n    \"price\" :75\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -110,7 +116,13 @@
 			],
 			"request": {
 				"method": "PATCH",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "[\r\n    {\"propName\" : \"price\" , \"value\" : 95}\r\n]",
@@ -231,6 +243,10 @@
 					"script": {
 						"id": "136f85fa-eb6c-4c17-9b46-309c123e4a50",
 						"exec": [
+							" var jsonData = pm.response.json();\r",
+							" var userToken = jsonData.token;\r",
+							" pm.environment.set(\"user_token\", userToken);\r",
+							"\r",
 							"pm.test(\"Correct status code\", function() {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
@@ -286,7 +302,13 @@
 			],
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"email\": \"notthiago@nablo.com\"\r\n}",
@@ -330,7 +352,13 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/api/users",
 					"protocol": "http",
@@ -364,7 +392,13 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/api/users/{{user_id}}",
 					"protocol": "http",
@@ -399,7 +433,13 @@
 			],
 			"request": {
 				"method": "PATCH",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "[\r\n    {\"propName\" : \"email\" , \"value\" : \"b@li.se\"}\r\n]",
@@ -448,10 +488,16 @@
 			],
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"items\" : [\r\n       \"5f63aa2fd25f4c1fe4204dc2\",\r\n       \"5f63aa38d25f4c1fe4204dc3\"\r\n    ]\r\n}\r\n",
+					"raw": "{\r\n    \"items\" : [\r\n       {\"_id\" : \"5f64e54e51a39115a4a3483e\", \"quantity\" : 3},\r\n       {\"_id\" : \"5f64e55651a39115a4a3483f\",\"quantity\" : 1 }\r\n       \r\n    ]\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -493,7 +539,13 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/api/users/{{user_id}}/orders/{{order_id}}",
 					"protocol": "http",
@@ -530,7 +582,13 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/api/users/{{user_id}}/orders",
 					"protocol": "http",
@@ -567,7 +625,13 @@
 			],
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"items\": [\r\n        \"5f634c4f8e20c530b8497946\"   \r\n    ]\r\n}",
@@ -613,7 +677,13 @@
 			],
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/api/users/{{user_id}}/orders/{{order_id}}",
 					"protocol": "http",
@@ -655,7 +725,13 @@
 			],
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"items\" : [\r\n       \"5f63aa2fd25f4c1fe4204dc2\",\r\n       \"5f63aa38d25f4c1fe4204dc3\"\r\n    ]\r\n}\r\n",
@@ -700,7 +776,13 @@
 			],
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/api/users/{{user_id}}/orders",
 					"protocol": "http",
@@ -736,7 +818,13 @@
 			],
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/api/items/{{item_id}}",
 					"protocol": "http",
@@ -782,7 +870,13 @@
 			],
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"name\" : \"Fries\",\r\n    \"price\" : 35\r\n}",
@@ -825,7 +919,13 @@
 			],
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/api/items",
 					"protocol": "http",
@@ -867,7 +967,13 @@
 			},
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"email\": \"andy@nablo.com\",\r\n    \"password\" : \"andy\"\r\n}",
@@ -911,7 +1017,13 @@
 			],
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/api/users/{{user_id}}",
 					"protocol": "http",
@@ -946,7 +1058,13 @@
 			],
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/api/users",
 					"protocol": "http",

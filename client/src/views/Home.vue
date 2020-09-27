@@ -1,22 +1,23 @@
 <template>
-  <div>
-    <b-jumbotron header="DIT341 Frontend" lead="Welcome to your DIT341 Frontend Vue.js App">
-      <b-button class="btn_message" variant="primary" v-on:click="getMessage()" >Get Message from Server</b-button>
-      <p>Message from the server:<br/>
-      {{ message }}</p>
-    </b-jumbotron>
+ <div class="home">
+   <b-img left :src="require('../assets/icon.jpeg')" v-bind="mainProps" rounded="circle" alt="Circle image"></b-img>
+    <div>
+      <b-button-group class="box">
+        <b-button href="/login">Log in</b-button>
+        <b-button href="/register">Register</b-button>
+      </b-button-group>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
-
 export default {
   name: 'home',
   data() {
     return {
-      message: 'none'
+      mainProps: { blank: false, blankColor: '#777', width: 75, height: 75, class: 'm1' }
     }
   },
   methods: {
@@ -34,7 +35,14 @@ export default {
 </script>
 
 <style>
-.btn_message {
-  margin-bottom: 1em;
-}
+  .home {
+    font-family: latha;
+    color: white;
+     position: absolute;
+    left: 0;
+    right: 0;
+    background-image: url('../assets/p1.jpg');
+    height: 97vh;
+  }
+
 </style>

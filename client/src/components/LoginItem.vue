@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form v-on:submit="submitLogin">
+        <form @submit.prevent="loginUser">
             <input v-model="newUser.email" class="input" type="text" placeholder="Email" required>
             <input v-model="newUser.password" class="input" type="text" placeholder="Password" required>
             <b-button type="submit" variant="primary">Log in</b-button>
@@ -9,8 +9,7 @@
 </template>
 
 <script>
-
-import { Api } from '@/Api'
+const swal = require('sweetalert')
 
 export default {
   data() {
@@ -22,14 +21,19 @@ export default {
     }
   },
   methods: {
-    submitLogin() {
-      Api.post('/users/login/', this.newUser)
-        .then(response => {
-          this.$router.push('/items')
-        })
-        .catch(error => {
-          console.log(error)
-        })
+    async loginUser() {
+      try {
+        const response = await this.$http.post('/users/login', this.newUser)
+        const token = response.data.token
+        localStorage.setItem('jwt', token)
+        if (token) {
+          swal('Success', 'Login Successful', 'success')
+          this.$router.push('/')
+        }
+      } catch (err) {
+        swal('Error', 'Something Went Wrong', 'error')
+        console.log(err.response)
+      }
     }
   }
 }

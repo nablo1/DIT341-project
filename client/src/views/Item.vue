@@ -1,7 +1,7 @@
 <template>
     <div>
-      <h3> {{item.name}} </h3>
-      <h5> {{item.price}} SEK </h5>
+      <h1>{{item.name}} </h1>
+      <h3>{{item.price}} </h3>
       <img src="https://via.placeholder.com/150" alt="Item image">
       <div>
         <b-button @click="addToCart">+</b-button>
@@ -9,8 +9,8 @@
       <b-button @click="removeFromCart">-</b-button>
       </div>
       <div>
-        <b-button @click="deleteItem" v-if="Employee" variant="danger">Remove item from menu</b-button>
-        <b-button v-if="Employee" variant="success">Edit item information</b-button>
+        <b-button @click="deleteItem" v-if="employee" variant="danger">Remove item from menu</b-button>
+        <b-button type="button" variant="outline-primary" :href="item._id + '/edit'">Edit item information</b-button>
       </div>
     </div>
 </template>
@@ -25,20 +25,23 @@ export default {
     this.itemId = this.$route.params.id
   },
   mounted() {
-    Api.get('/items/' + this.itemId)
-      .then(response => {
-        this.item = response.data
-      })
-      .catch(error => {
-        this.message = error.message
-        console.error(error)
-        this.item = null
-      })
-      .then(() => {
-        // This code is always executed (after success or error).
-      })
+    this.getItem()
   },
   methods: {
+    getItem() {
+      Api.get('/items/' + this.itemId)
+        .then(response => {
+          this.item = response.data
+        })
+        .catch(error => {
+          this.message = error.message
+          console.error(error)
+          this.item = null
+        })
+        .then(() => {
+        // This code is always executed (after success or error).
+        })
+    },
     addToCart() {
       this.cart += 1
     },
@@ -53,17 +56,21 @@ export default {
       Api.delete('/items/' + this.itemId)
         .then(response => {
           console.log(response.data.message)
+          this.$router.push('/menu')
         })
         .catch(error => {
           console.log(error)
         })
+    },
+    updateItem() {
+      // patch an item to be implented
     }
   },
   data() {
     return {
-      item: null,
+      item: {},
       cart: 0,
-      Employee: true
+      employee: true
     }
   }
 }

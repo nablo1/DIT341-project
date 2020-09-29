@@ -5,6 +5,9 @@ import Menu from './views/Menu.vue'
 import Contact from './views/Contact.vue'
 import Item from './views/Item.vue'
 import Login from './views/Login.vue'
+import AddItem from './views/AddItem.vue'
+import EditItem from './views/EditItem.vue'
+import Account from './views/Account.vue'
 
 Vue.use(Router)
 
@@ -36,6 +39,21 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/add-to-menu',
+      name: 'additem',
+      component: AddItem
+    },
+    {
+      path: '/menu/:id/edit',
+      name: 'edititem',
+      component: EditItem
+    },
+    {
+      path: '/users/:id',
+      name: 'account',
+      component: Account
     }
   ]
 })

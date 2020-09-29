@@ -1,12 +1,13 @@
 <template>
     <div>
       <h1>{{item.name}} </h1>
+      <h1>{{item._id}} </h1>
       <h3>{{item.price}} </h3>
       <img src="https://via.placeholder.com/150" alt="Item image">
       <div>
-        <b-button @click="addToCart">+</b-button>
+        <b-button @click="increase">+</b-button>
         <span>{{cart}}</span>
-      <b-button @click="removeFromCart">-</b-button>
+      <b-button @click="decrease">-</b-button>
       </div>
       <div>
         <b-button @click="deleteItem" v-if="employee" variant="danger">Remove item from menu</b-button>
@@ -42,10 +43,10 @@ export default {
         // This code is always executed (after success or error).
         })
     },
-    addToCart() {
+    increase() {
       this.cart += 1
     },
-    removeFromCart() {
+    decrease() {
       if (this.cart > 0) {
         this.cart -= 1
       } else {

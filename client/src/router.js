@@ -8,6 +8,8 @@ import Login from './views/Login.vue'
 import AddItem from './views/AddItem.vue'
 import EditItem from './views/EditItem.vue'
 import Account from './views/Account.vue'
+import Orders from './views/Orders.vue'
+import AddOrder from './views/AddOrder.vue'
 
 Vue.use(Router)
 
@@ -54,6 +56,16 @@ export default new Router({
       path: '/users/:id',
       name: 'account',
       component: Account
+    },
+    {
+      path: '/users/:id/orders',
+      name: 'orders',
+      component: Orders
+    },
+    {
+      path: '/add-order',
+      name: 'add-order',
+      component: AddOrder
     }
   ]
 })

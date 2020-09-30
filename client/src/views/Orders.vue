@@ -3,7 +3,6 @@
         <div  v-for="order in orders" v-bind:key="order._id">
             <order-comp v-bind:order="order"/>
         </div>
-        <h1> PP</h1>
      </div>
 </template>
 

@@ -2,7 +2,7 @@
     <div>
       <div>
       <b-jumbotron >
-          <LoginItem/>
+          <EmpLoginItem/>
       </b-jumbotron>
       </div>
     </div>
@@ -10,17 +10,17 @@
 
 <script>
 
-import LoginItem from '@/components/LoginItem.vue'
+import EmpLoginItem from '@/components/EmpLoginItem.vue'
 import VueJwtDecode from 'vue-jwt-decode'
 
 export default {
-  name: 'login',
+  name: 'emp-login',
   components: {
-    LoginItem
+    EmpLoginItem
   },
   data() {
     return {
-      user: {}
+      emp: {}
     }
   },
   methods: {

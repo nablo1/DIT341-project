@@ -1,40 +1,35 @@
 <template>
-    <div class="log-sign">
-            <h1><center>Log In</center></h1>
-            <form @submit.prevent="loginUser">
+  <div class="log-sign">
+            <h1><center>ON FIRE</center></h1>
+            <form @submit.prevent="loginEmp">
                   <div class="logform">
-                    <label>Email : </label>
-                    <input v-model="newUser.email" type="text" placeholder="Enter Email" required><br>
-                    <label>Password : </label>
-                    <input v-model="newUser.password" type="text" placeholder="Enter Password" required><br>
+                    <label>Passcode: </label>
+                    <input v-model="newEmp.passcode" type="text" placeholder="Enter passcode" name="passcode" required><br>
                     <center>
-                    <b-button type="submit" variant="primary">Log in</b-button>
+                    <button type="submit" variant="primary">Login</button>
                     <button type="button" class="cancelbtn"> Cancel</button></center><br>
-                    Are you an Employee? <router-link to="/empLogin"> Click Here </router-link>
+
                   </div>
             </form>
         </div>
-
 </template>
 
 <script>
 const swal = require('sweetalert')
-
 export default {
   data() {
     return {
-      newUser: {
-        email: '',
-        password: ''
+      newEmp: {
+        passcode: ''
       }
     }
   },
   methods: {
-    async loginUser() {
+    async loginEmp() {
       try {
-        const response = await this.$http.post('/users/login', this.newUser)
+        const response = await this.$http.post('/employees/login', this.newEmp)
         const token = response.data.token
-        localStorage.setItem('jwt', token)
+        localStorage.setItem('jwtemp', token)
         if (token) {
           swal('Success', 'Login Successful', 'success')
           this.$router.push('/menu')
@@ -67,5 +62,4 @@ export default {
             position: relative;
             background-color: black;
         }
-
 </style>

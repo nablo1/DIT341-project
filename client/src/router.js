@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Menu from './views/Menu.vue'
-import Contact from './views/Contact.vue'
 import Item from './views/Item.vue'
 import Login from './views/Login.vue'
 import AddItem from './views/AddItem.vue'
@@ -10,10 +9,11 @@ import EditItem from './views/EditItem.vue'
 import Account from './views/Account.vue'
 import Orders from './views/Orders.vue'
 import AddOrder from './views/AddOrder.vue'
+import EmpLogin from './views/EmpLogin.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -26,11 +26,6 @@ export default new Router({
       path: '/menu',
       name: 'menu',
       component: Menu
-    },
-    {
-      path: '/contact',
-      name: 'contact',
-      component: Contact
     },
     {
       path: '/menu/:id',
@@ -63,9 +58,44 @@ export default new Router({
       component: Orders
     },
     {
-      path: '/add-order',
+      path: '/new-order',
       name: 'add-order',
       component: AddOrder
+    },
+    {
+      path: '/empLogin',
+      name: 'emp-login',
+      component: EmpLogin
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresUserAuth)) {
+    if (localStorage.getItem('jwt') == null) {
+      next({
+        path: '/login'
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresEmpAuth)) {
+    if (localStorage.getItem('jwtemp') == null) {
+      next({
+        path: '/login'
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+export default router

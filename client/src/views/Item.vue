@@ -10,8 +10,8 @@
       <b-button @click="decrease">-</b-button>
       </div>
       <div>
-        <b-button @click="deleteItem" v-if="employee" variant="danger">Remove item from menu</b-button>
-        <b-button type="button" variant="outline-primary" :href="item._id + '/edit'">Edit item information</b-button>
+        <b-button v-if="checkEmp()" @click="deleteItem" variant="danger">Remove item from menu</b-button>
+        <b-button v-if="checkEmp()" type="button" variant="outline-primary" :href="item._id + '/edit'">Edit item information</b-button>
       </div>
     </div>
 </template>
@@ -63,15 +63,18 @@ export default {
           console.log(error)
         })
     },
-    updateItem() {
-      // patch an item to be implented
+    checkEmp() {
+      if (localStorage.getItem('jwtemp') == null) {
+        return false
+      }
+      return true
     }
   },
   data() {
     return {
       item: {},
       cart: 0,
-      employee: true
+      numberItems: []
     }
   }
 }

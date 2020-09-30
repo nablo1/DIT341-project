@@ -37,7 +37,7 @@ export default {
         localStorage.setItem('jwt', token)
         if (token) {
           swal('Success', 'Login Successful', 'success')
-          this.$router.push('/menu')
+          this.$router.push('/')
         }
       } catch (err) {
         swal('Error', 'Something Went Wrong', 'error')

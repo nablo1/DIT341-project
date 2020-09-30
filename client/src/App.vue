@@ -3,7 +3,7 @@
     <div id="nav">
       <router-link to="/" target="_blank">Home</router-link> |
       <router-link to="/menu" target="_blank">Menu</router-link> |
-      <router-link v-if="checkLoggedIn()" to='/users' target="_blank">Account</router-link>
+      <router-link v-if="checkLoggedIn()" :to="'/users/' + this.getUserId()" target="_blank">Account</router-link>
       <router-link style="position:relative; left:500px;" to="/cart" target="_blank">Cart</router-link>
       <button v-if="checkLoggedIn() || checkEmp()"  @click="logUserOut()">Log out </button>
     </div>
@@ -47,6 +47,9 @@ export default {
         return false
       }
       return true
+    },
+    getUserId() {
+      return this.user._id
     }
   },
   created() {

@@ -8,17 +8,20 @@
         <b-button @click="increase">+</b-button>
         <span>{{cart}}</span>
       <b-button @click="decrease">-</b-button>
+      <button @click="storeInCart()"> Add to cart </button>
       </div>
       <div>
         <b-button v-if="checkEmp()" @click="deleteItem" variant="danger">Remove item from menu</b-button>
         <b-button v-if="checkEmp()" type="button" variant="outline-primary" :href="item._id + '/edit'">Edit item information</b-button>
       </div>
+      <button @click="removeTemp()"> Remove temp </button>
     </div>
 </template>
 
 <script>
 
 import { Api } from '@/Api'
+const swal = require('sweetalert')
 
 export default {
   name: 'item',
@@ -45,6 +48,7 @@ export default {
     },
     increase() {
       this.cart += 1
+      this.cartItems.push(this.itemId)
     },
     decrease() {
       if (this.cart > 0) {
@@ -52,15 +56,17 @@ export default {
       } else {
         this.cart = 0
       }
+      this.cartItems.pop(this.itemId)
     },
     deleteItem(id) {
       Api.delete('/items/' + this.itemId)
         .then(response => {
-          console.log(response.data.message)
+          swal('Success', 'Item deleted', 'success')
           this.$router.push('/menu')
         })
         .catch(error => {
           console.log(error)
+          swal('Error', 'Something Went Wrong', 'error')
         })
     },
     checkEmp() {
@@ -68,13 +74,21 @@ export default {
         return false
       }
       return true
+    },
+    storeInCart() {
+      var storageCart = JSON.parse(localStorage.getItem('cart')) || []
+      storageCart.push(this.cartItems)
+      localStorage.setItem('cart', JSON.stringify(storageCart))
+    },
+    removeTemp() {
+      localStorage.removeItem('cart')
     }
   },
   data() {
     return {
       item: {},
       cart: 0,
-      numberItems: []
+      cartItems: []
     }
   }
 }

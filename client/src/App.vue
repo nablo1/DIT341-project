@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/" target="_blank">Home</router-link> |
-      <router-link to="/menu" target="_blank">Menu</router-link> |
-      <router-link v-if="checkLoggedIn()" :to="'/users/' + this.getUserId()" target="_blank">Account</router-link>
-      <router-link style="position:relative; left:500px;" to="/cart" target="_blank">Cart</router-link>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/menu">Menu</router-link> |
+      <router-link v-if="checkLoggedIn()" :to="'/users/' + this.getUserId()">Account</router-link>
+      <router-link style="position:relative; left:500px;" to="/cart">Cart</router-link>
       <button v-if="checkLoggedIn() || checkEmp()"  @click="logUserOut()">Log out </button>
     </div>
     <!-- Render the content of the current page view -->

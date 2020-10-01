@@ -12,6 +12,7 @@
 
 import { Api } from '@/Api'
 import ItemComp from '@/components/ItemComp.vue'
+const swal = require('sweetalert')
 
 export default {
   name: 'menu',
@@ -30,10 +31,11 @@ export default {
     deleteItems() {
       Api.delete('/items')
         .then(response => {
-          console.log(response.data.message)
+          swal('Success', 'Items deleted', 'success')
         })
         .catch(error => {
           console.error(error)
+          swal('Error', 'Something Went Wrong', 'error')
         })
     },
     getItems() {

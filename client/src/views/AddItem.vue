@@ -13,6 +13,7 @@
 <script>
 
 import { Api } from '@/Api'
+const swal = require('sweetalert')
 
 export default {
   name: 'additem',
@@ -28,10 +29,12 @@ export default {
     createItem() {
       Api.post('/items', this.newItem)
         .then(response => {
+          swal('Success', 'Item created', 'success')
           this.$router.push('/menu')
         })
         .catch(error => {
           console.log(error)
+          swal('Error', 'Something Went Wrong', 'error')
         })
         .then(() => {
           // This code is always executed (after success or error).

@@ -2,6 +2,8 @@
     <div>
         <h1>{{user.email}} </h1>
         <b-button type="button" variant="outline-primary" :href="'/users/' + this.userId + '/orders'" target="_blank">My orders</b-button>
+        <b-button type="button" variant="outline-primary" href="/new-order" target="_blank">Place an order</b-button>
+        <b-button type="button" variant="outline-primary" :href="'/users/' + this.userId + '/edit'">Update account intormation</b-button>
     </div>
 </template>
 

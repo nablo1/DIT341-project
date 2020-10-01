@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1> {{order.time}} </h1>
+        <h1> {{order.items}} </h1>
     </div>
 </template>
 

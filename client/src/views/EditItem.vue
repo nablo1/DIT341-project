@@ -12,6 +12,7 @@
 <script>
 
 import { Api } from '@/Api'
+const swal = require('sweetalert')
 
 export default {
   name: 'edititem',
@@ -31,12 +32,11 @@ export default {
     updateItem() {
       Api.put('/items/' + this.itemId, this.newItem)
         .then(response => {
-          this.$router.push('/menu')
+          swal('Success', 'Item info updated', 'success')
         })
         .catch(error => {
           this.message = error.message
-          console.error(error)
-          this.item = null
+          swal('Error', 'Something Went Wrong', 'error')
         })
         .then(() => {
         })

@@ -10,6 +10,8 @@ import Account from './views/Account.vue'
 import Orders from './views/Orders.vue'
 import AddOrder from './views/AddOrder.vue'
 import EmpLogin from './views/EmpLogin.vue'
+import Cart from './views/Cart.vue'
+import EditUser from './views/EditUser.vue'
 
 Vue.use(Router)
 
@@ -53,6 +55,11 @@ const router = new Router({
       component: Account
     },
     {
+      path: '/users/:id/edit',
+      name: 'edit-user',
+      component: EditUser
+    },
+    {
       path: '/users/:id/orders',
       name: 'orders',
       component: Orders
@@ -66,6 +73,11 @@ const router = new Router({
       path: '/empLogin',
       name: 'emp-login',
       component: EmpLogin
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: Cart
     }
   ]
 })

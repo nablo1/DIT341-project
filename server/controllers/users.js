@@ -196,23 +196,14 @@ router.delete('/api/users/:id/orders/', function(req, res, next) {
 
 
 router.patch("/api/users/:id", (req, res, next) => {
-    var id = req.params.id;
-    var updates = {};
-    for (var operations of req.body) {
-      updates[operations.propName] = operations.value;
-    }
-    User.update({ _id: id }, { $set: updates })
-      .exec()
-      .then(result => {
-        console.log(result);
-        res.status(200).json(result);
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({
-          error: err
-        });
+    User.findByIdAndUpdate(req.params.id, req.body, {new:true}, function (err, user) {
+        if (err) { return next(err); }
+        if (!user) {
+            return res.status(404).json({'message': 'User not found!'});
+        }
+            res.json(user);
       });
+      
   });
 
   router.put('/api/users/:userId/orders/:orderId', function(req, res, next) {

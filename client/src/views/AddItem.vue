@@ -5,7 +5,6 @@
               <input v-model="newItem.price" class="input" type="number" placeholder="Price" required>
               <b-button type="submit" variant="primary">Add item</b-button>
             </form>
-            <vue-timepicker> time</vue-timepicker>
             <b-button type="button" variant="outline-primary" href='/menu'>Back to menu</b-button>
     </div>
 </template>

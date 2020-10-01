@@ -8,7 +8,6 @@ import AddItem from './views/AddItem.vue'
 import EditItem from './views/EditItem.vue'
 import Account from './views/Account.vue'
 import Orders from './views/Orders.vue'
-import AddOrder from './views/AddOrder.vue'
 import EmpLogin from './views/EmpLogin.vue'
 import Cart from './views/Cart.vue'
 import EditUser from './views/EditUser.vue'
@@ -65,17 +64,12 @@ const router = new Router({
       component: Orders
     },
     {
-      path: '/new-order',
-      name: 'add-order',
-      component: AddOrder
-    },
-    {
       path: '/empLogin',
       name: 'emp-login',
       component: EmpLogin
     },
     {
-      path: '/cart',
+      path: '/users/:id/cart',
       name: 'cart',
       component: Cart
     }

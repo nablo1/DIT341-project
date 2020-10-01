@@ -1,19 +1,19 @@
 <template>
     <div>
       <h1>{{item.name}} </h1>
-      <h1>{{item._id}} </h1>
      <h3>{{item.price}} </h3>
       <img src="https://via.placeholder.com/150" alt="Item image">
       <div >
-        <b-button @click="addToCart">+</b-button>
+        <b-button @click="increase()">+</b-button>
 
         <span>{{this.cart}}</span>
-      <b-button @click="deleteFromCart">-</b-button>
-      <input @click="submit" type="submit" value="Submit">
+      <b-button @click="decrease()">-</b-button>
+      <br>
+      <b-button @click="addToCart()">Add to cart</b-button>
       </div>
       <div>
-        <b-button @click="deleteItem" v-if="employee" variant="danger">Remove item from menu</b-button>
-        <b-button type="button" variant="outline-primary" :href="item._id + '/edit'">Edit item information</b-button>
+        <b-button v-if="checkEmp()" @click="deleteItem" variant="danger">Remove item from menu</b-button>
+        <b-button v-if="checkEmp()" type="button" variant="outline-primary" :href="item._id + '/edit'">Edit item information</b-button>
       </div>
     </div>
 </template>
@@ -22,6 +22,7 @@
 
 import { Api } from '@/Api'
 import { mapMutations, mapGetters } from 'vuex'
+const swal = require('sweetalert')
 
 export default {
   name: 'item',
@@ -53,16 +54,16 @@ export default {
         // This code is always executed (after success or error).
         })
     },
-    submit() {
+    addToCart() {
       for (let i = 0; i < this.cart; i++) {
         this.ADD_TO_CART(this.item._id)
       }
       this.cart = 0
     },
-    addToCart() {
+    increase() {
       this.cart += 1
     },
-    deleteFromCart() {
+    decrease() {
       if (this.cart > 0) {
         this.cart -= 1
       } else {
@@ -72,16 +73,21 @@ export default {
     deleteItem(id) {
       Api.delete('/items/' + this.item._id)
         .then(response => {
-          console.log(response.data.message)
+          swal('Success', 'Item Removed From Menu', 'success')
           this.$router.push('/menu')
         })
         .catch(error => {
           console.log(error)
+          swal('Error', 'Something Went Wrong', 'error')
         })
     },
-    updateItem() {
-      // patch an item to be implented
+    checkEmp() {
+      if (localStorage.getItem('jwtemp') == null) {
+        return false
+      }
+      return true
     }
+
   },
   data() {
     return {

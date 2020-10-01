@@ -1,10 +1,8 @@
 var express = require('express');
-const verify_auth = require('../auth_middleware/verify_auth');
 var router = express.Router();
 var Item = require('../models/item');
-var User = require('../models/user');
 
-router.post('/api/items',verify_auth ,function(req, res, next) {
+router.post('/api/items',function(req, res, next) {
     var item = new Item(req.body);
     item.save(function(err, items) {
         if (err) { return next(err); }
@@ -51,7 +49,7 @@ router.get('/api/items/:id', function(req, res, next) {
     });
 });
 
-router.put('/api/items/:id',verify_auth ,function(req, res, next) {
+router.put('/api/items/:id' ,function(req, res, next) {
   Item.findByIdAndUpdate(req.params.id, req.body, {new:true}, function (err, item) {
     if (err) { return next(err); }
     if (!item) {
@@ -62,7 +60,7 @@ router.put('/api/items/:id',verify_auth ,function(req, res, next) {
   
 });
 
-router.delete('/api/items/:id',verify_auth ,function(req, res, next) {
+router.delete('/api/items/:id' ,function(req, res, next) {
   Item.findByIdAndRemove(req.params.id, req.body, function (err, item) {
     if (err) { return next(err); }
     if (!item) {
@@ -74,7 +72,7 @@ router.delete('/api/items/:id',verify_auth ,function(req, res, next) {
   
 });
 
-router.delete('/api/items',verify_auth ,function(req, res, next) {
+router.delete('/api/items',function(req, res, next) {
   Item.deleteMany(function(err, items) {
       if (err) { return next(err); }
       res.json({'message':'Items are now deleted.'});
@@ -82,24 +80,5 @@ router.delete('/api/items',verify_auth ,function(req, res, next) {
 });
 
 
-router.patch("/api/items/:id",verify_auth ,(req, res, next) => {
-    var id = req.params.id;
-    var updates = {};
-    for (var operations of req.body) {
-      updates[operations.propName] = operations.value;
-    }
-    Item.update({ _id: id }, { $set: updates })
-      .exec()
-      .then(result => {
-        console.log(result);
-        res.status(200).json(result);
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({
-          error: err
-        });
-      });
-  });
 
 module.exports = router;

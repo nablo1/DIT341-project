@@ -2,7 +2,7 @@ var jwt = require('jsonwebtoken');
 
 module.exports = function(req,res,next){
     try {
-        var token = req.headers.authorization.split(" ")[1];
+        var token = req.headers.authorization.replace('Bearer','');
         console.log(token);
         var decoded = jwt.decode(token, process.env.JWT_KEY||'secret');
         req.userData = decoded;

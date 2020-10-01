@@ -99,7 +99,7 @@
 			"response": []
 		},
 		{
-			"name": "Update a property of an item",
+			"name": "Update an item",
 			"event": [
 				{
 					"listen": "test",
@@ -115,7 +115,7 @@
 				}
 			],
 			"request": {
-				"method": "PATCH",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Authorization",
@@ -125,7 +125,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\"propName\" : \"price\" , \"value\" : 95}\r\n]",
+					"raw": "{\r\n    \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -212,7 +212,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"thiago@nablo.com\",\r\n    \"password\" : \"thiago\"\r\n}",
+					"raw": "{\r\n    \"email\": \"mina@nablo.com\",\r\n    \"password\" : \"mina\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -220,7 +220,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/users/signup",
+					"raw": "http://localhost:3000/api/users/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -229,7 +229,7 @@
 					"path": [
 						"api",
 						"users",
-						"signup"
+						""
 					]
 				}
 			},
@@ -261,7 +261,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"thiago@nablo.com\",\r\n    \"password\" : \"thiago\"\r\n}",
+					"raw": "{\r\n    \"email\": \"mina@nablo.com\",\r\n    \"password\" : \"mina\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -305,8 +305,8 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{user_token}}",
-						"type": "text"
+						"type": "text",
+						"value": "Bearer {{user_token}}"
 					}
 				],
 				"body": {
@@ -416,7 +416,7 @@
 			"response": []
 		},
 		{
-			"name": "Update a property of a user",
+			"name": "Update a prop of a user",
 			"event": [
 				{
 					"listen": "test",
@@ -436,13 +436,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{user_token}}",
-						"type": "text"
+						"type": "text",
+						"value": "Bearer {{user_token}}"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\"propName\" : \"email\" , \"value\" : \"b@li.se\"}\r\n]",
+					"raw": "[\r\n    {\"propName\" : \"email\" , \"value\" : \"not@thiago.se\"}\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -654,6 +654,41 @@
 						"{{user_id}}",
 						"orders",
 						"{{order_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gett orders for all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "98dc33b0-29da-4f7a-9f97-3c060468f37e",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders",
+						""
 					]
 				}
 			},
@@ -976,7 +1011,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"andy@nablo.com\",\r\n    \"password\" : \"andy\"\r\n}",
+					"raw": "{\r\n    \"email\": \"meno@nablo.com\",\r\n    \"password\" : \"meno\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -984,7 +1019,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/users/signup",
+					"raw": "http://localhost:3000/api/users/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -993,7 +1028,7 @@
 					"path": [
 						"api",
 						"users",
-						"signup"
+						""
 					]
 				}
 			},

@@ -3,12 +3,10 @@ var router = express.Router();
 var bcrypt = require('bcrypt');
 var User = require('../models/user');
 var jwt = require('jsonwebtoken');
-var Verify_auth = require('../auth_middleware/verify_auth');
 var Order = require('../models/order');
-const verify_auth = require('../auth_middleware/verify_auth');
 
 
-router.post('/api/users/signup', function (req, res, next) {
+router.post('/api/users/', function (req, res, next) {
     User.findOne({ 'email': req.body.email }, function (err,user) {
         if (user) {
             var err = new Error('Email already exists');
@@ -21,15 +19,14 @@ router.post('/api/users/signup', function (req, res, next) {
                     err.status = 500;
                     return next(err);
                 } else { 
-                    var user = new User(
+                    var user1 = new User(
                         {
                             'email': req.body.email,
                             'password': hash
                         });
-
-                    user.save(function (err,user ) {
+                        console.log(user1)
+                    user1.save(function (err,user ) {
                         if (err) {
-                            var err = new Error("invalid Email");
                             err.status = 500;
                             return next(err);
                         } else {           
@@ -79,7 +76,7 @@ router.post('/api/users/login', function (req, res, next) {
     });
 });
 
-router.get('/api/users/:id',verify_auth, function(req, res, next) {
+router.get('/api/users/:id', function(req, res, next) {
     User.findById(req.params.id).select('_id email password').exec()
     .then(user => {
         if (!user) {
@@ -95,7 +92,7 @@ router.get('/api/users/:id',verify_auth, function(req, res, next) {
 
 
 // Do we need this?
-router.get('/api/users',verify_auth, function(req, res, next) {
+router.get('/api/users', function(req, res, next) {
     User.find().select('_id email').exec()
     .then(users => {
           res.status(200).json(users)
@@ -104,7 +101,7 @@ router.get('/api/users',verify_auth, function(req, res, next) {
       });
 });
 
-router.put('/api/users/:id',verify_auth, function(req, res, next) {
+router.put('/api/users/:id', function(req, res, next) {
     User.findByIdAndUpdate(req.params.id, req.body, {new:true}, function (err, user) {
       if (err) { return next(err); }
       if (!user) {
@@ -115,7 +112,7 @@ router.put('/api/users/:id',verify_auth, function(req, res, next) {
     
   });
 
-router.delete('/api/users/:id',verify_auth, function (req, res, next) {
+router.delete('/api/users/:id', function (req, res, next) {
     User.findByIdAndRemove(req.params.id, req.body, function (err, user) {
         if (err) { return next(err); }
         if (!user) {
@@ -127,7 +124,7 @@ router.delete('/api/users/:id',verify_auth, function (req, res, next) {
 });
 
 //DANGER
-router.delete('/api/users',verify_auth, function (req, res, next) {
+router.delete('/api/users', function (req, res, next) {
     User.deleteMany(function(err, users) {
         if (err) { return next(err); }
         res.json({'message':'All users deleted.'});
@@ -135,7 +132,7 @@ router.delete('/api/users',verify_auth, function (req, res, next) {
 
 });
 
-router.post('/api/users/:id/orders',verify_auth, function(req, res, next) {
+router.post('/api/users/:id/orders', function(req, res, next) {
     var order = new Order(req.body);
     order.save(function(err, order) {
         if (err) { return next(err); }
@@ -151,7 +148,7 @@ router.post('/api/users/:id/orders',verify_auth, function(req, res, next) {
     });
  });
 
- router.get('/api/users/:id/orders',verify_auth, function(req, res, next) {
+ router.get('/api/users/:id/orders', function(req, res, next) {
     User.findById(req.params.id).select('orders').populate('orders').exec()
     .then(user => {
         if (!user) {
@@ -165,7 +162,7 @@ router.post('/api/users/:id/orders',verify_auth, function(req, res, next) {
       });
 });
 
-router.get('/api/users/:userId/orders/:orderId',verify_auth, function(req, res, next) {
+router.get('/api/users/:userId/orders/:orderId', function(req, res, next) {
     Order.findById(req.params.orderId).exec()
     .then(order => {
         if (!order) {
@@ -179,7 +176,7 @@ router.get('/api/users/:userId/orders/:orderId',verify_auth, function(req, res, 
       });
 });
 
-router.delete('/api/users/:userId/orders/:orderId',verify_auth, function(req, res, next) {
+router.delete('/api/users/:userId/orders/:orderId', function(req, res, next) {
     Order.findByIdAndRemove(req.params.orderId, req.body, function (err, order) {
         if (err) { return next(err); }
         if (!order) {
@@ -190,7 +187,7 @@ router.delete('/api/users/:userId/orders/:orderId',verify_auth, function(req, re
 });
 
 //Do we need this?
-router.delete('/api/users/:id/orders/',verify_auth, function(req, res, next) {
+router.delete('/api/users/:id/orders/', function(req, res, next) {
     Order.deleteMany(function(err, orders) {
         if (err) { return next(err); }
         res.json({'message':'All orders deleted.'});
@@ -198,27 +195,18 @@ router.delete('/api/users/:id/orders/',verify_auth, function(req, res, next) {
   });
 
 
-router.patch("/api/users/:id",verify_auth, (req, res, next) => {
-    var id = req.params.id;
-    var updates = {};
-    for (var operations of req.body) {
-      updates[operations.propName] = operations.value;
-    }
-    User.update({ _id: id }, { $set: updates })
-      .exec()
-      .then(result => {
-        console.log(result);
-        res.status(200).json(result);
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({
-          error: err
-        });
+router.patch("/api/users/:id", (req, res, next) => {
+    User.findByIdAndUpdate(req.params.id, req.body, {new:true}, function (err, user) {
+        if (err) { return next(err); }
+        if (!user) {
+            return res.status(404).json({'message': 'User not found!'});
+        }
+            res.json(user);
       });
+      
   });
 
-  router.put('/api/users/:userId/orders/:orderId',verify_auth, function(req, res, next) {
+  router.put('/api/users/:userId/orders/:orderId', function(req, res, next) {
     Order.findByIdAndUpdate(req.params.orderId, req.body, {new:true}, function (err, order) {
         if (err) { return next(err); }
         if (!order) {

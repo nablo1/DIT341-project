@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "boostrap": "^2.0.0",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.16.0",
+    "mdbvue": "^6.7.1",
     "sweetalert": "^2.1.2",
     "vue": "^2.6.12",
     "vue-jwt-decode": "^0.1.0",

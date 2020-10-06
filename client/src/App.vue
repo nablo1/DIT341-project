@@ -1,14 +1,17 @@
 <template>
   <div id="app">
     <div id="nav">
+      <div class="box">
       <router-link to="/">Home</router-link> |
       <router-link to="/menu" >Menu</router-link> |
       <router-link v-if="checkLoggedIn()" :to="'/users/' + this.getUserId()">Account</router-link>
-      <router-link v-if="checkLoggedIn()" style="position:relative; left:500px;" :to="'/users/' + this.getUserId() + '/cart'"  >Cart ({{cartCount}})</router-link>
+      <router-link v-if="checkLoggedIn()" :to="'/users/' + this.getUserId() + '/cart'"  >Cart ({{cartCount}})</router-link>
+      </div>
       <button v-if="checkLoggedIn() || checkEmp()"  @click="logUserOut()">Log out </button>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
+    <footer />
   </div>
 </template>
 
@@ -68,8 +71,25 @@ export default {
 </script>
 
 <style>
+
 #app {
   font-family: 'Latha';
   text-align: center;
+}
+
+body{
+   background: linear-gradient( rgba(0,0,0,0.65),rgba(0,0,0,0.65),rgba(0,0,0,0.38),rgba(0,0,0,0)
+            )
+                ,url(https://organicfoodfinds.com/wp-content/uploads/2018/02/yes-certified_organic_usda.jpg)no-repeat;
+            background-size: cover;
+}
+
+img {
+            border-radius: 70%;
+          }
+
+.box{  width: 900px;
+        float:right;
+        border:1px solid none;
 }
 </style>

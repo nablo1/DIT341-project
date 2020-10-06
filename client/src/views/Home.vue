@@ -8,10 +8,14 @@
     <div class="wd">
 
         <h1> ON FIRE</h1>
-
+        <br/>
+        <br/>
         <h4><center> Order you food and pick it up any time you want!</center></h4>
         <br/>
-
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <center>
         <button v-if="!checkLoggedIn() && !checkEmp() " class="order-button text-center">
             <router-link to="/login">Log In</router-link>

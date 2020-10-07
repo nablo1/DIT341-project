@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+<<<<<<< Updated upstream
     <div id="nav">
       <div class="box">
       <router-link to="/">Home</router-link> |
@@ -12,20 +13,30 @@
     <!-- Render the content of the current page view -->
     <router-view/>
     <footer />
+=======
+    <NaviBar />
+    <!-- Render the content of the current page view -->
+    <router-view/>
+    <Myfooter />
+>>>>>>> Stashed changes
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import VueJwtDecode from 'vue-jwt-decode'
+import NaviBar from '@/components/NaviBar.vue'
+import Myfooter from '@/components/footer.vue'
 export default {
   computed: {
     ...mapGetters([
       'cartCount'
     ])
-
   },
   methods: {
+    handleView() {
+      this.mobileView = window.innerWidth <= 990
+    },
     logUserOut() {
       localStorage.removeItem('jwt')
       localStorage.removeItem('jwtemp')
@@ -58,13 +69,21 @@ export default {
       return this.user._id
     }
   },
+  components: {
+    NaviBar,
+    Myfooter
+  },
   data() {
     return {
+      mobileView: false,
+      showNav: false,
       loggedIn: true
     }
   },
   created() {
     this.getUserDetails()
+    this.handleView()
+    window.addEventListener('resize', this.handleView)
   }
 
 }

@@ -1,9 +1,20 @@
 <template>
   <body>
-  <div>
-    <div class="top-icon">
-        <img src="../assets/favicon.jpeg" alt="icon" width="100" height="100">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="@/assets/background.png">
+          <div class="carousel-caption">
+            <h1 class="display-2"><center> Order your food and pick it up anytime you want! </center></h1>
+            <button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="btn btn-primary btn-lg">
+              <router-link to="/login">Log In</router-link>
+              </button>
+              <button v-if="checkLoggedIn() || checkEmp()"  @click="logUserOut()" class="btn btn-primary btn-lg">
+                Log out
+              </button>
+          </div>
+      </div>
     </div>
+<<<<<<< Updated upstream
 
     <div class="wd">
 
@@ -24,8 +35,9 @@
 
     </div>
   </div>
+=======
+>>>>>>> Stashed changes
   </body>
-
 </template>
 
 <script>
@@ -55,60 +67,8 @@ export default {
 </script>
 
 <style scoped>
-  body{
-            font-family: latha;
-            color:white;
-           ;
+.carousel-inner img{
+  width: 100%;
+  height: 100%;
 }
-
-.wd{
-            width: 1000px;
-            height: 539px;
-            opacity: 0.8;
-            padding-top: 100%;
-            padding: 55px;
-            position:absolute;
-            top:50%;
-            left:50%;
-            background-color: black;
-            margin-top: -300px; /* this is half the height of your div*/
-            margin-left:-500px; /*this is half of width of your div*/
-        }
- .wd h1{
-            text-align: center;
-            text-transform: uppercase;
-            font-weight: 100px;
-        }
-
-        .wd h4{
-            text-align: justify;
-            color:darkgray;
-            font-weight: normal;
-        }
-
-        .wd h2{
-            text-align: center;
-            text-transform: uppercase;
-            font-weight: normal;
-            margin: 40px auto;
-        }
-
-        .top-icon{
-            position: relative;
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            margin-left: -4;
-        }
-        .order-button{
-            background-color: blanchedalmond;
-            color:white;
-            padding:10px;
-            margin:-14px auto;
-            padding-left: 50px;
-            padding-right: 50px;
-            text-align: center;
-
-        }
-
 </style>

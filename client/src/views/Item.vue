@@ -1,6 +1,30 @@
 <template>
     <div>
-      <h1>{{item.name}} </h1>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="bg-image">
+          <img src="@/assets/background.png" class="backgroundImg"></div>
+          <div class="carousel-caption center">
+            <h1>{{item.name}} </h1>
+            <h3>{{item.price}} </h3>
+      <img src="https://via.placeholder.com/150" alt="Item image" class="center">
+      <br/>
+      <div>
+        <b-button @click="increase()">+</b-button>
+        <span>{{this.cart}}</span>
+      <b-button @click="decrease()">-</b-button>
+      <br>
+      <b-button @click="addToCart()">Add to cart</b-button>
+      </div>
+      <div>
+        <b-button v-if="checkEmp()" @click="deleteItem" variant="danger">Remove item from menu</b-button>
+        <b-button v-if="checkEmp()" type="button" variant="outline-primary" :href="item._id + '/edit'">Edit item information</b-button>
+      </div>
+          </div>
+      </div>
+    </div>
+
+      <!--h1>{{item.name}} </h1>
      <h3>{{item.price}} </h3>
       <img src="https://via.placeholder.com/150" alt="Item image">
       <div >
@@ -14,7 +38,7 @@
       <div>
         <b-button v-if="checkEmp()" @click="deleteItem" variant="danger">Remove item from menu</b-button>
         <b-button v-if="checkEmp()" type="button" variant="outline-primary" :href="item._id + '/edit'">Edit item information</b-button>
-      </div>
+      </div-->
     </div>
 </template>
 
@@ -98,3 +122,29 @@ export default {
   }
 }
 </script>
+<style>
+.bg-image {
+  /* The image used */
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.backgroundImg{
+  width: 100%;
+  height: 100%;
+}
+.center {
+  margin: auto;
+  margin-top: 50px;
+  width: 50%;
+  padding: 10px;
+}
+
+</style>

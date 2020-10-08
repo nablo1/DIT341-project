@@ -4,8 +4,8 @@
         <div class="carousel-item active">
           <img src="@/assets/background.png">
           <div class="carousel-caption">
-            <h1 class="display-2"><center> Order your food and pick it up anytime you want! </center></h1>
-            <button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="btn btn-primary btn-lg">
+            <h4 class="display-2"><center> Order your food and pick it up anytime you want! </center></h4>
+            <button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg">
               <router-link to="/login">Log In</router-link>
               </button>
               <button v-if="checkLoggedIn() || checkEmp()"  @click="logUserOut()" class="btn btn-primary btn-lg">
@@ -14,29 +14,6 @@
           </div>
       </div>
     </div>
-<<<<<<< Updated upstream
-
-    <div class="wd">
-
-        <h1> ON FIRE</h1>
-        <br/>
-        <br/>
-        <h4><center> Order you food and pick it up any time you want!</center></h4>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <center>
-        <button v-if="!checkLoggedIn() && !checkEmp() " class="order-button text-center">
-            <router-link to="/login">Log In</router-link>
-        </button>
-        </center>
-
-    </div>
-  </div>
-=======
->>>>>>> Stashed changes
   </body>
 </template>
 
@@ -70,5 +47,18 @@ export default {
 .carousel-inner img{
   width: 100%;
   height: 100%;
+}
+.carousel-caption{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.carousel-caption h1{
+  font-size: 500%;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 10px #000;
+}
+.whitefont{
+  color: white;
 }
 </style>

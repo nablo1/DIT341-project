@@ -1,8 +1,9 @@
 <template>
-    <div class="log-sign">
+    <div class="login">
             <h1><center>Log In</center></h1>
             <form @submit.prevent="loginUser">
-                  <div class="logform">
+                  <div class="h-100 row align-items-center">
+                    <div class="col">
                     <label>Email : </label>
                     <input v-model="newUser.email" type="text" placeholder="Enter Email" required><br>
                     <label>Password : </label>
@@ -11,6 +12,7 @@
                     <b-button type="submit" variant="primary">Log in</b-button>
                     <button type="button" class="cancelbtn"> Cancel</button></center><br>
                     Are you an Employee? <router-link to="/empLogin"> Click Here </router-link>
+                  </div>
                   </div>
             </form>
         </div>
@@ -49,23 +51,4 @@ export default {
 </script>
 
 <style scoped>
-.log-sign{
-            width: 500px;
-            height: 739px;
-            opacity: 0.8;
-            padding-top: 100%;
-            padding: 55px;
-            position:absolute;
-            top:50%;
-            left:50%;
-            background-color: black;
-            margin-top: -350px; /* this is half the height of your div*/
-            margin-left:-250px; /*this is half of width of your div*/
-        }
-
-.logform{
-            position: relative;
-            background-color: black;
-        }
-
 </style>

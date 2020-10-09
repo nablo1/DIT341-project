@@ -4,7 +4,7 @@
         <div class="carousel-item active">
           <img src="@/assets/background.png">
           <div class="carousel-caption">
-            <h4 class="display-2"><center> Order your food and pick it up anytime you want! </center></h4>
+            <h4 class="responsiveText display-2"><center> Order your food and pick it up anytime you want! </center></h4>
             <button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg">
               <router-link to="/login">Log In</router-link>
               </button>
@@ -62,6 +62,16 @@ export default {
   text-shadow: 1px 1px 10px #000;
 }
 .whitefont{
-  color: white;
+  text-decoration-color: white;
+}
+@media screen and (max-width: 601px) {
+  .responsiveText{
+    font-size: 80px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .responsiveText{
+    font-size: 30px;
+  }
 }
 </style>

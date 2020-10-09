@@ -3,10 +3,10 @@
     <div id="navigation">
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
             <a href="#" class="navbar-brand">OnFire</a>
-            <button class="navbar-toggler" data-toggle="collapse">
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#naviBar">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse">
+            <div class="collapse navbar-collapse" id="naviBar">
             <ul class="navbar-nav ml-auto">
                 <li class="navbar-item"><router-link to="/menu" class="nav-link">Menu</router-link></li>
                 <li class="navbar-item"><router-link to="#" class="nav-link">About us </router-link></li>
@@ -18,6 +18,7 @@
    </body>
 </template>
 <script>
+
 export default {}
 </script>
 
@@ -25,5 +26,8 @@ export default {}
 .navigation{
     bottom: 0;
     transition: all 300ms ease-in-out;
+}
+.opened{
+    transform: translateX(300px);
 }
 </style>

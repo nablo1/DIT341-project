@@ -90,8 +90,6 @@ export default {
 </script>
 
 <style scoped>
-<<<<<<< Updated upstream
-=======
 .bg-image {
   /* The image used */
   /* Add the blur effect */
@@ -117,5 +115,4 @@ export default {
   padding: 10px;
 }
 
->>>>>>> Stashed changes
 </style>

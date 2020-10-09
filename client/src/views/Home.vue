@@ -8,12 +8,9 @@
             <button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg">
               <router-link to="/login">Log In</router-link>
               </button>
-<<<<<<< Updated upstream
-=======
               <button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg">
               <router-link to="/register">Register</router-link>
               </button>
->>>>>>> Stashed changes
               <button v-if="checkLoggedIn() || checkEmp()"  @click="logUserOut()" class="btn btn-primary btn-lg">
                 Log out
               </button>

@@ -13,7 +13,6 @@
         <b-button @click="increase()">+</b-button>
         <span>{{this.cart}}</span>
       <b-button @click="decrease()">-</b-button>
-<<<<<<< Updated upstream
       <br>
       <b-button @click="addToCart()">Add to cart</b-button>
       </div>
@@ -24,31 +23,6 @@
           </div>
       </div>
     </div>
-
-      <!--h1>{{item.name}} </h1>
-     <h3>{{item.price}} </h3>
-      <img src="https://via.placeholder.com/150" alt="Item image">
-      <div >
-        <b-button @click="increase()">+</b-button>
-
-        <span>{{this.cart}}</span>
-      <b-button @click="decrease()">-</b-button>
-=======
->>>>>>> Stashed changes
-      <br>
-      <b-button @click="addToCart()">Add to cart</b-button>
-      </div>
-      <div>
-        <b-button v-if="checkEmp()" @click="deleteItem" variant="danger">Remove item from menu</b-button>
-        <b-button v-if="checkEmp()" type="button" variant="outline-primary" :href="item._id + '/edit'">Edit item information</b-button>
-<<<<<<< Updated upstream
-      </div-->
-=======
-      </div>
-          </div>
-      </div>
-    </div>
->>>>>>> Stashed changes
     </div>
 </template>
 

@@ -1,12 +1,4 @@
 <template>
-<<<<<<< Updated upstream
-    <div>
-        <h1>{{user.email}} </h1>
-        <b-button type="button" variant="outline-primary" :href="'/users/' + this.userId + '/orders'">My orders</b-button>
-        <b-button type="button" variant="outline-primary" :href="'/users/' + this.getUserId() + '/cart'">Place an order</b-button>
-        <b-button type="button" variant="outline-primary" :href="'/users/' + this.userId + '/edit'">Update account intormation</b-button>
-    </div>
-=======
      <body>
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -34,7 +26,6 @@
       </div>
         </div>
     </body>
->>>>>>> Stashed changes
 </template>
 
 <script>

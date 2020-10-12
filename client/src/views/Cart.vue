@@ -1,9 +1,4 @@
 <template>
-<<<<<<< Updated upstream
-    <div>
-<div v-for="(item, index) in myCartList" v-bind:key="index">
-    {{item}}
-=======
   <div>
     <body>
       <div class="carousel-inner">
@@ -27,19 +22,12 @@
                         v-bind:key="index"
                       >
                         {{ item.name }} {{ item.price }} {{ item.quantity }}
->>>>>>> Stashed changes
 
                         <b-button @click="deleteItem(item)" class="del"
                           >x</b-button
                         >
                       </div>
 
-<<<<<<< Updated upstream
-<div>
-  <b-button type="button" variant="outline-primary" @click="createOrder()">Complete order</b-button>
-</div>
-    </div>
-=======
                       <div>
                         <p v-if="!emptyCart()">
                           Toal Price: {{ this.totalCost }}
@@ -71,7 +59,6 @@
       </div>
     </body>
   </div>
->>>>>>> Stashed changes
 </template>
 
 <script>
@@ -84,16 +71,9 @@ export default {
     return {
       cart: [],
       newOrder: {
-<<<<<<< Updated upstream
-        items: [
-          { _id: '5f64e54e51a39115a4a3483e' },
-          { _id: '5f64e55651a39115a4a3483f' }
-        ]
-=======
         items: [],
         pickUpTime: '',
         createdAt: Date().toString()
->>>>>>> Stashed changes
       }
     }
   },

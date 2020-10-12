@@ -31,11 +31,7 @@ export default new Vuex.Store({
       state.shopCart.splice(item, 1)
     },
     SET_CART_LIST: (state) => {
-<<<<<<< Updated upstream
-      state.shopCart = state.emptyCart
-=======
       state.shopCart = []
->>>>>>> Stashed changes
     }
   },
   actions: {

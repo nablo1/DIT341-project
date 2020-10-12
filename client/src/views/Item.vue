@@ -1,20 +1,4 @@
 <template>
-<<<<<<< Updated upstream
-    <div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="bg-image">
-          <img src="@/assets/background.png" class="backgroundImg"></div>
-          <div class="carousel-caption center">
-            <h1>{{item.name}} </h1>
-            <h3>{{item.price}} </h3>
-      <img src="https://via.placeholder.com/150" alt="Item image" class="center">
-      <br/>
-      <div>
-        <b-button @click="increase()">+</b-button>
-        <span>{{this.cart}}</span>
-      <b-button @click="decrease()">-</b-button>
-=======
   <div>
     <body>
       <div class="carousel-inner">
@@ -81,7 +65,6 @@
 
         <span v-if="checkLoggedIn()">{{this.cart}}</span>
       <b-button v-if="checkLoggedIn()" @click="decrease()">-</b-button>
->>>>>>> Stashed changes
       <br>
       <b-button @click="addToCart()">Add to cart</b-button>
       </div>

@@ -1,10 +1,6 @@
 <template>
-<<<<<<< Updated upstream
-    <div>
-=======
     <!--div>
 
->>>>>>> Stashed changes
         <form @submit.prevent="updateEmail">
               <input v-model="newEmail.email" class="input" type="text" placeholder="New Email" required>
               <b-button type="submit" variant="primary">Update Email</b-button>

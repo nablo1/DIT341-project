@@ -1,43 +1,5 @@
 <template>
   <div>
-<<<<<<< Updated upstream
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="bg-image">
-          <img src="@/assets/background.png" class="backgroumdImg" /></div>
-        <div class="carousel-caption center">
-          <h1><center>Log In</center></h1>
-          <form @submit.prevent="loginUser">
-            <div class="h-100 row align-items-center">
-              <div class="col">
-                <label>Email : </label>
-                <input
-                  v-model="newUser.email"
-                  type="text"
-                  placeholder="Enter Email"
-                  required
-                /><br />
-                <label>Password : </label>
-                <input
-                  v-model="newUser.password"
-                  type="text"
-                  placeholder="Enter Password"
-                  required
-                /><br />
-                <center>
-                  <b-button type="submit" variant="primary">Log in</b-button>
-                  <button type="button" class="cancelbtn">Cancel</button>
-                </center>
-                <br />
-                Are you an Employee?
-                <router-link to="/empLogin"> Click Here </router-link>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-=======
     <body>
       <div class="modal-dialog text-center">
         <div class="col-sm-8 main-section">
@@ -83,7 +45,6 @@
         </div>
       </div>
     </body>
->>>>>>> Stashed changes
   </div>
 </template>
 

@@ -10,8 +10,6 @@ export default {
   props: ['order']
 }
 </script>
-<<<<<<< Updated upstream
-=======
 
 <style scoped>
 
@@ -21,4 +19,3 @@ export default {
     border-bottom: 1px #ccc dotted;
   }
 </style>
->>>>>>> Stashed changes

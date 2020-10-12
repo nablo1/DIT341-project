@@ -1,8 +1,4 @@
 <template>
-<<<<<<< Updated upstream
-    <div>
-      <b-button type="button" variant="outline-primary" href='/menu'>View menu</b-button>
-=======
 <div>
   <body>
       <div class="carousel-inner">
@@ -22,7 +18,6 @@
                       <div>
                         <div>
       <order-comp v-bind:ordersList="orders"></order-comp>
->>>>>>> Stashed changes
       <b-button type="button" variant="outline-primary" :href="'/users/' + this.userId">Back to account</b-button>
         <div  v-for="order in orders" v-bind:key="order._id">
             <order-comp v-bind:order="order"/>

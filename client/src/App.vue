@@ -10,13 +10,8 @@
 <script>
 import { mapGetters } from 'vuex'
 import VueJwtDecode from 'vue-jwt-decode'
-<<<<<<< Updated upstream
-import Myfooter from '@/components/footer.vue'
-import NaviBar from '@/components/NaviBar.vue'
-=======
 import NaviBar from '@/components/NaviBar.vue'
 import Myfooter from '@/components/footer.vue'
->>>>>>> Stashed changes
 export default {
   computed: {
     ...mapGetters([

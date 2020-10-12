@@ -5,8 +5,6 @@
         </div>
         <b-button v-if="checkEmp()" variant="danger" @click="deleteItems">Delete all items</b-button>
         <b-button v-if="checkEmp()" type="button" variant="outline-primary" href="/add-to-menu">Add an item</b-button>
-<<<<<<< Updated upstream
-=======
         <b-button v-if="checkEmp()" variant="danger" @click="showMsgBox">Delete all items</b-button>
      </div-->
 <div>
@@ -32,7 +30,6 @@
         </div>
         <b-button v-if="checkEmp()" type="button" variant="outline-primary" href="/add-to-menu">Add an item</b-button>
         <b-button v-if="checkEmp()" variant="danger" @click="showMsgBox">Delete all items</b-button>
->>>>>>> Stashed changes
      </div>
                       </div>
                       <div>

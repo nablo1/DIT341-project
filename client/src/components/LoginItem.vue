@@ -80,32 +80,6 @@ export default {
 </script>
 
 <style scoped>
-<<<<<<< Updated upstream
-.bg-image {
-  /* The image used */
-  /* Add the blur effect */
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
-  /* Full height */
-  height: 100%;
-  width: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.backgroundImg{
-  width: 100%;
-  height: 100%;
-}
-.center {
-  margin: auto;
-  margin-top: 50px;
-  width: 50%;
-  padding: 10px;
-}
-=======
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 body {
   background: url('https://ibb.co/Xx0knsB');
@@ -162,7 +136,6 @@ body {
   /* Full height */
   height: 100%;
   width: 100%;
->>>>>>> Stashed changes
 
   /* Center and scale the image nicely */
   background-position: center;

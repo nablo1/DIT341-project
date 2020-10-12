@@ -72,14 +72,7 @@
         <b-button v-if="checkEmp()" @click="deleteItem" variant="danger">Remove item from menu</b-button>
         <b-button v-if="checkEmp()" type="button" variant="outline-primary" :href="item._id + '/edit'">Edit item information</b-button>
       </div>
-<<<<<<< Updated upstream
-          </div>
-      </div>
-    </div>
-    </div>
-=======
     </div-->
->>>>>>> Stashed changes
 </template>
 
 <script>
@@ -112,12 +105,8 @@ export default {
           this.item = null
         })
         .then(() => {
-<<<<<<< Updated upstream
-        // This code is always executed (after success or error).
-=======
           this.addtoItem2()
           // This code is always executed (after success or error).
->>>>>>> Stashed changes
         })
     },
     addToCart() {
@@ -152,8 +141,6 @@ export default {
         return false
       }
       return true
-<<<<<<< Updated upstream
-=======
     },
     checkLoggedIn() {
       if (localStorage.getItem('jwt') == null) {
@@ -184,26 +171,18 @@ export default {
         .catch((err) => {
           console.log(err)
         })
->>>>>>> Stashed changes
     }
   },
   data() {
     return {
       cart: 0,
       item: {},
-<<<<<<< Updated upstream
-      employee: true
-=======
       item2: { _id: null, name: null, price: 0, quantity: 0 },
       box: ''
->>>>>>> Stashed changes
     }
   }
 }
 </script>
-<<<<<<< Updated upstream
-<style>
-=======
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 body {
@@ -254,7 +233,6 @@ body {
 }
 /* BLUR BACKGROUND SECTION */
 
->>>>>>> Stashed changes
 .bg-image {
   /* The image used */
   /* Add the blur effect */
@@ -262,21 +240,14 @@ body {
   -webkit-filter: blur(8px);
   /* Full height */
   height: 100%;
-<<<<<<< Updated upstream
-=======
   width: 100%;
->>>>>>> Stashed changes
 
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-<<<<<<< Updated upstream
-.backgroundImg{
-=======
 .backgroundImg {
->>>>>>> Stashed changes
   width: 100%;
   height: 100%;
 }
@@ -286,9 +257,6 @@ body {
   width: 50%;
   padding: 10px;
 }
-<<<<<<< Updated upstream
-
-=======
 .carousel-inner img {
   width: 100%;
   height: 100%;
@@ -296,5 +264,4 @@ body {
 .fixPos{
   margin-top: -750px;
 }
->>>>>>> Stashed changes
 </style>

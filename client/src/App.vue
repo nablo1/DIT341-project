@@ -10,8 +10,13 @@
 <script>
 import { mapGetters } from 'vuex'
 import VueJwtDecode from 'vue-jwt-decode'
+<<<<<<< Updated upstream
 import Myfooter from '@/components/footer.vue'
 import NaviBar from '@/components/NaviBar.vue'
+=======
+import NaviBar from '@/components/NaviBar.vue'
+import Myfooter from '@/components/footer.vue'
+>>>>>>> Stashed changes
 export default {
   computed: {
     ...mapGetters([
@@ -55,8 +60,13 @@ export default {
     }
   },
   components: {
+<<<<<<< Updated upstream
     NaviBar,
     Myfooter
+=======
+    Myfooter,
+    NaviBar
+>>>>>>> Stashed changes
   },
   data() {
     return {
@@ -75,9 +85,13 @@ export default {
 </script>
 
 <style>
+<<<<<<< Updated upstream
 
+=======
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+>>>>>>> Stashed changes
 #app {
-  font-family: 'Latha';
+  font-family: 'Source Sans Pro', sans-serif;
   text-align: center;
 }
 </style>

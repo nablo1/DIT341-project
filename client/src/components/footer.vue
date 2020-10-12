@@ -3,6 +3,7 @@
   <div class="container-fluid padding">
     <div class="row text-center">
       <div class="col-md-4">
+<<<<<<< Updated upstream
         <img src="@/assets/footer.png">
         <hr class="light">
         <p>INFO ON THE RESTURANT</p>
@@ -16,6 +17,21 @@
       </div>
       <div class="col-md-4">
         <hr class="light">
+=======
+        <p>Address</p>
+        <hr class="light">
+        <p>INFO ON THE RESTURANT</p>
+      </div>
+      <div class="col-md-4">
+        <p>Opening Hours</p>
+        <hr class="light">
+        <p>INFO</p>
+      </div>
+      <div class="col-md-4">
+        <p>Contact Us</p>
+        <hr class="light">
+        <p>Social 5ara</p>
+>>>>>>> Stashed changes
       </div>
       <div class="col-12">
         <hr class="light">

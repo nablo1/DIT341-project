@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <body>
+<div>
+  <body>
       <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="bg-image">
@@ -10,19 +10,13 @@
              <div class="col-sm-8 main-section">
             <div class="modal-content fixPos">
             <div class="col-12 cusImage">
-              <img src="@/assets/employee.png" /></div>
+              <img src="@/assets/customer.png" /></div>
             <div class="col-12">
-              <div class="logForm">
-              <form @submit.prevent="loginEmp">
-                  <div class="logform">
-                    <input v-model="newEmp.passcode" class="text-center" type="password" placeholder="Enter Passcode" name="passcode" required><br>
-                    <center>
-                    <b-button type="submit" variant="primary">Login</b-button>
-                    <div class="divider" />
-                    <b-button type="button" class="cancelbtn"> Cancel</b-button></center><br>
-
-                  </div>
-            </form>
+            <div>
+    <div>
+              <p class="red"></p>
+        <order-item v-bind:ord="ordersList" v-on:delete-order="deleteOrder"> </order-item>
+    </div>
               </div>
               </div>
             </div>
@@ -32,33 +26,56 @@
       </div>
         </div>
     </body>
-  </div>
+</div>
 </template>
 
 <script>
-const swal = require('sweetalert')
+import { Api } from '@/Api'
+import OrderItem from '@/components/AllOrdersComp.vue'
+
 export default {
+  name: 'orders',
+  components: {
+    OrderItem
+  },
+  // mounted() { },
   data() {
     return {
-      newEmp: {
-        passcode: ''
-      }
+      ordersList: []
     }
   },
+  mounted() {
+    this.getOrders()
+  },
   methods: {
-    async loginEmp() {
-      try {
-        const response = await this.$http.post('/employees/login', this.newEmp)
-        const token = response.data.token
-        localStorage.setItem('jwtemp', token)
-        if (token) {
-          swal('Success', 'Login Successful', 'success')
-          this.$router.push('/')
-        }
-      } catch (err) {
-        swal('Error', 'Something Went Wrong', 'error')
-        console.log(err.response)
-      }
+    getOrders() {
+      console.log('PAGE is loaded')
+      // Load the real camels from the server
+      Api.get('/orders')
+        .then(response => {
+        // console.log(response.data)
+          this.ordersList = response.data.orders
+          console.log(this.ordersList)
+        })
+        .catch(error => {
+          this.message = error.message
+          console.error(error)
+          this.ordersList = []
+        // TODO: display error message
+        })
+        .then(() => {
+        //   This code is always executed at the end. After success or failure.
+        })
+    },
+    deleteOrder(id) {
+      Api.delete(`/orders/${id}`)
+        .then(reponse => {
+          const index = this.ordersList.findIndex(order => order._id === id)
+          this.ordersList.splice(index, 1)
+        })
+        .catch(error => {
+          console.error(error)
+        })
     }
   }
 }

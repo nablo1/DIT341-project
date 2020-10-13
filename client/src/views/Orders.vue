@@ -18,6 +18,7 @@
                       <div>
                         <div>
       <order-comp v-bind:ordersList="orders"></order-comp>
+      <button @click="getOrders()">get orders</button>
       <b-button type="button" variant="outline-primary" :href="'/users/' + this.userId">Back to account</b-button>
         <div  v-for="order in orders" v-bind:key="order._id">
             <order-comp v-bind:order="order"/>
@@ -59,13 +60,13 @@ export default {
     this.userId = this.$route.params.id
   },
   mounted() {
-    this.getOrders()
   },
   methods: {
     getOrders() {
       Api.get('/users/' + this.userId + '/orders')
         .then(response => {
           this.orders = response.data.orders
+          console.log(this.orders)
         })
         .catch(error => {
           this.message = error.message

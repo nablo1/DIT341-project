@@ -11,6 +11,8 @@ import Orders from './views/Orders.vue'
 import EmpLogin from './views/EmpLogin.vue'
 import Cart from './views/Cart.vue'
 import EditUser from './views/EditUser.vue'
+import Register from './views/Register.vue'
+import AllOrders from './views/AllOrders.vue'
 
 Vue.use(Router)
 
@@ -72,6 +74,16 @@ const router = new Router({
       path: '/users/:id/cart',
       name: 'cart',
       component: Cart
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
+    },
+    {
+      path: '/all-orders',
+      name: 'all-orders',
+      component: AllOrders
     }
   ]
 })

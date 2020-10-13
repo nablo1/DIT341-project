@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a :href="'/users/'+this.getUserId()" class="nav-link"> Account </a>
+          <a><router-link v-if="checkLoggedIn()" :to="'/users/'+this.getUserId()" class="nav-link" >  Account</router-link></a>
         </li>
         <li class="nav-item">
           <a href="/menu" class="nav-link"> Menu </a>

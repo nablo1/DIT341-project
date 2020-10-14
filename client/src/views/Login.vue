@@ -1,10 +1,11 @@
 <template>
     <div>
       <div>
-      <b-jumbotron >
           <LoginItem/>
-      </b-jumbotron>
       </div>
+    <div>
+      <hr class="pushDown">
+    </div>
     </div>
 </template>
 
@@ -42,3 +43,12 @@ export default {
   }
 }
 </script>
+<style>
+.noBack{
+  background-color: black;
+}
+.pushDown{
+  margin-bottom: 230px;
+  color: transparent;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
-<div>
-  <body>
+  <div>
+    <body>
       <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="bg-image">
@@ -17,16 +17,20 @@
                     <div>
                       <div>
                         <div>
-      <order-comp v-bind:ordersList="orders"></order-comp>
-      <button @click="getOrders()">get orders</button>
-      <b-button type="button" variant="outline-primary" :href="'/users/' + this.userId">Back to account</b-button>
-        <div  v-for="order in orders" v-bind:key="order._id">
-            <order-comp v-bind:order="order"/>
-        </div>
-     </div>
+                          <order-comp v-bind:ordersList="orders"></order-comp>
+                          <button @click="getOrders()">get orders</button>
+                          <b-button
+                            type="button"
+                            variant="outline-primary"
+                            :href="'/users/' + this.userId"
+                            >Back to account</b-button
+                          >
+                          <div v-for="order in orders" v-bind:key="order._id">
+                            <order-comp v-bind:order="order" />
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                      </div>
+                      <div></div>
                     </div>
                   </div>
                 </div>
@@ -36,8 +40,8 @@
         </div>
       </div>
     </body>
-</div>
-    <!--div>
+  </div>
+  <!--div>
       <order-comp v-bind:ordersList="orders"></order-comp>
       <b-button type="button" variant="outline-primary" :href="'/users/' + this.userId">Back to account</b-button>
      </div-->
@@ -59,27 +63,25 @@ export default {
   created() {
     this.userId = this.$route.params.id
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     getOrders() {
       Api.get('/users/' + this.userId + '/orders')
-        .then(response => {
-          this.orders = response.data.orders
+        .then((response) => {
+          this.orders = response.data.order
           console.log(this.orders)
         })
-        .catch(error => {
+        .catch((error) => {
           this.message = error.message
           console.error(error)
           this.orders = []
-        // TODO: display error message
+          // TODO: display error message
         })
         .then(() => {
-        //   This code is always executed at the end. After success or failure.
+          //   This code is always executed at the end. After success or failure.
         })
     }
   }
-
 }
 </script>
 <style scoped>
@@ -160,7 +162,7 @@ body {
   width: 100%;
   height: 100%;
 }
-.fixPos{
+.fixPos {
   margin-top: -750px;
 }
 </style>

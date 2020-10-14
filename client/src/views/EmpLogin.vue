@@ -1,9 +1,7 @@
 <template>
     <div>
       <div>
-      <b-jumbotron >
           <EmpLoginItem/>
-      </b-jumbotron>
       </div>
     </div>
 </template>

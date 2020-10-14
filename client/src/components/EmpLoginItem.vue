@@ -1,11 +1,6 @@
 <template>
   <div>
-    <body>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="bg-image">
-          <img src="@/assets/background.png" class="backgroundImg"></div>
-          <div class="carousel-caption">
+    <!--body>
              <div class="modal-dialog text-center">
              <div class="col-sm-8 main-section">
             <div class="modal-content fixPos">
@@ -20,7 +15,6 @@
                     <b-button type="submit" variant="primary">Login</b-button>
                     <div class="divider" />
                     <b-button type="button" class="cancelbtn"> Cancel</b-button></center><br>
-
                   </div>
             </form>
               </div>
@@ -28,9 +22,51 @@
             </div>
           </div>
         </div>
+    </body-->
+    <body>
+      <div class="modal-dialog text-center background">
+        <div class="col-sm-8 main-section">
+          <div class="modal-content fixPos">
+            <div class="col-12 cusImage">
+              <img src="@/assets/customer.png" />
+            </div>
+            <div class="col-12">
+              <div class="logForm">
+                <form @submit.prevent="loginUser">
+                  <div class="h-100 row align-items-center">
+                    <div class="col">
+                      <input
+                        v-model="newUser.email"
+                        type="text"
+                        placeholder="Enter Email"
+                        required
+                        class="text-center"
+                      /><br />
+                      <input
+                        v-model="newUser.password"
+                        type="password"
+                        placeholder="Enter Password"
+                        required
+                        class="text-center"
+                      /><br />
+                      <center>
+                        <b-button type="submit" class="logbtn">Log in</b-button>
+                        <div class="divider" />
+                        <b-button type="button" class="btn">Cancel</b-button>
+                      </center>
+                      <br />
+                      <div class="empColor">
+                        Are you an Employee?
+                        <router-link to="/empLogin"> Click Here </router-link>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
-      </div>
         </div>
+      </div>
     </body>
   </div>
 </template>
@@ -66,11 +102,6 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
-body {
-  background: url('https://ibb.co/Xx0knsB');
-  background-size: cover;
-  font-family: 'Source Sans Pro', sans-serif;
-}
 .main-section {
   margin: 0 auto;
   margin-top: 130px;

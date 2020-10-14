@@ -1,7 +1,7 @@
 <template>
   <div>
     <body>
-      <div class="modal-dialog text-center">
+      <div class="modal-dialog text-center background">
         <div class="col-sm-8 main-section">
           <div class="modal-content fixPos">
             <div class="col-12 cusImage">

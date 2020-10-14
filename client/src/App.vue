@@ -77,6 +77,9 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 #app {
+  background: url('https://i.ibb.co/DYKN3KY/background-Blur.png');
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: 'Source Sans Pro', sans-serif;
   text-align: center;
 }

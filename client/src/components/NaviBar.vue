@@ -1,7 +1,7 @@
 <template>
 <div>
   <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <a href="#" class="navbar-brand">OnFire</a>
+    <a href="/" class="navbar-brand">OnFire</a>
     <button class="navbar-toggler">
       <span class="navbar-toggler-icon"></span>
     </button>

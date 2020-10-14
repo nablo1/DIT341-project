@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="txt-color">
           <div v-for="(order, index) in ord" :key="index">
-           <p> Order: {{index +1}}</p>
+           <h1> ORDER: {{index +1}}</h1>
             <p>Created at: {{order.createdAt}}</p>
             <p>Pick-up time: {{order.pickUpTime}}</p>
             <div v-for="(item, index) in order.items" :key="index">
@@ -10,8 +10,8 @@
               quantity: {{item.quantity}}
              </p>
             </div>
-
-<b-button @click="$emit('delete-order', order._id)" class="del">x</b-button>
+              <b-button @click="$emit('delete-order', order._id)" class="del">Remove Order</b-button>
+              <br>  <br>  <br>
         </div>
     </div>
 </template>
@@ -46,5 +46,8 @@ export default {
     background: #f4f4f4;
     padding: 10px;
     border-bottom: 1px #ccc dotted;
+  }
+  .txt-color {
+    color: white;
   }
 </style>

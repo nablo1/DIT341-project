@@ -12,7 +12,7 @@
                 <h1 v-if="emptyCart()">Your cart is empty</h1>
 
                 <div v-for="(item, index) in myCartList" v-bind:key="index">
-                  {{ item.name }} {{ item.price }} {{ item.quantity }}
+                  {{ item.name }} {{ item.quantity }}
 
                   <b-button @click="deleteItem(item)" class="del">X</b-button>
                 </div>

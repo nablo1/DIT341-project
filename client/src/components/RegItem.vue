@@ -9,17 +9,32 @@
             </div>
             <div class="col-12">
               <div class="logForm">
-               <form @submit.prevent="loginEmp">
-                  <div class="logform">
-                    <label>Passcode: </label>
-                    <input v-model="newEmp.passcode" type="text" placeholder="Enter passcode" name="passcode" required><br>
-                    <center>
-                     <b-button type="submit" variant="primary">Log in</b-button>
-                    <b-button type="button" variant="outline-primary" href="/">Cancel</b-button>
-                    </center><br>
-
+                <form @submit.prevent="registerUser()">
+                  <div class="h-100 row align-items-center">
+                    <div class="col">
+                      <input
+                        v-model="newUser.email"
+                        type="text"
+                        placeholder="Enter Email"
+                        required
+                        class="text-center"
+                      /><br />
+                      <input
+                        v-model="newUser.password"
+                        type="password"
+                        placeholder="Enter Password"
+                        required
+                        class="text-center"
+                      /><br />
+                      <center>
+                        <b-button type="submit" class="logbtn">Register</b-button>
+                        <div class="divider" />
+                        <b-button href="/" type="button" class="btn">Cancel</b-button>
+                      </center>
+                      <br />
+                    </div>
                   </div>
-            </form>
+                </form>
               </div>
             </div>
           </div>
@@ -30,32 +45,36 @@
 </template>
 
 <script>
+import { Api } from '@/Api'
 const swal = require('sweetalert')
+
 export default {
   data() {
     return {
-      newEmp: {
-        passcode: ''
+      newUser: {
+        email: '',
+        password: ''
       }
     }
   },
   methods: {
-    async loginEmp() {
-      try {
-        const response = await this.$http.post('/employees/login', this.newEmp)
-        const token = response.data.token
-        localStorage.setItem('jwtemp', token)
-        if (token) {
-          swal('Success', 'Login Successful', 'success')
-          this.$router.push('/')
-        }
-      } catch (err) {
-        swal('Error', 'Something Went Wrong', 'error')
-        console.log(err.response)
-      }
+    registerUser() {
+      Api.post('/users', this.newUser)
+        .then(response => {
+          swal('Success', 'Registeration Successful', 'success')
+          this.$router.push('/login')
+        })
+        .catch(error => {
+          console.log(error)
+          swal('Error', 'Something Went Wrong', 'error')
+        })
+        .then(() => {
+          // This code is always executed (after success or error).
+        })
     }
   }
 }
+
 </script>
 
 <style scoped>

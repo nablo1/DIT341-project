@@ -39,6 +39,13 @@
                     :href="item._id + '/edit'"
                     >Edit item information</b-button
                   >
+                  <b-button
+                    v-if="checkEmp() || checkLoggedIn()"
+                    type="button"
+                    variant="outline-primary"
+                    href="/menu"
+                    >Back to Menu</b-button
+                  >
                 </div>
               </div>
             </div>

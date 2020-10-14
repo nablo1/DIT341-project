@@ -1,12 +1,13 @@
 <template>
-    <div>
+    <div style="color:white">
       <div v-for="(order, index) in ordersList" :key="index">
-            <p> Order: {{index +1}}</p>
+            <h1> ORDER: {{index +1}}</h1>
             <p>Created at: {{order.createdAt}}</p>
             <p> Pick-up time: {{order.pickUpTime}}</p>
             <div v-for="(item, index) in order.items" :key="index">
               item:  {{item._id.name}},
               quantity: {{item.quantity}}
+              <br> <br> <br>
             </div>
         </div>
     </div>

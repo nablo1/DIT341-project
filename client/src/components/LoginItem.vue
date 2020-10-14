@@ -29,7 +29,7 @@
                       <center>
                         <b-button type="submit" class="logbtn">Log in</b-button>
                         <div class="divider" />
-                        <b-button type="button" class="btn">Cancel</b-button>
+                        <b-button href="/" type="button" class="btn">Cancel</b-button>
                       </center>
                       <br />
                       <div class="empColor">

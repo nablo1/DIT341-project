@@ -5,12 +5,13 @@
           <img src="@/assets/background.png">
           <div class="carousel-caption">
             <h4 class="responsiveText display-2"><center> Order your food and pick it up anytime you want! </center></h4>
-            <button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg">
-              <router-link to="/login">Log In</router-link>
-              </button>
-              <button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg">
-              <router-link to="/register">Register</router-link>
-              </button>
+            <b-button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg" href="/login">
+              Log In
+              </b-button>
+              &nbsp;
+              <b-button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg" href="/register">
+                Register
+              </b-button>
               <button v-if="checkLoggedIn() || checkEmp()"  @click="logUserOut()" class="btn btn-primary btn-lg">
                 Log out
               </button>

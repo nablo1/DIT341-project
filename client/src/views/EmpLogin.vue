@@ -3,6 +3,9 @@
       <div>
           <EmpLoginItem/>
       </div>
+      <div>
+        <hr class="pushDown">
+      </div>
     </div>
 </template>
 
@@ -40,3 +43,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+.pushDown{
+  margin-bottom: 350px;
+  border-top: transparent;
+}
+</style>

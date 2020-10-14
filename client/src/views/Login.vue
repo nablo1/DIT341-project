@@ -48,7 +48,7 @@ export default {
   background-color: black;
 }
 .pushDown{
-  margin-bottom: 230px;
-  color: transparent;
+  margin-bottom: 270px;
+  border-top: transparent;
 }
 </style>

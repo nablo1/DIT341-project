@@ -1,28 +1,5 @@
 <template>
-  <div>
-    <!--body>
-             <div class="modal-dialog text-center">
-             <div class="col-sm-8 main-section">
-            <div class="modal-content fixPos">
-            <div class="col-12 cusImage">
-              <img src="@/assets/employee.png" /></div>
-            <div class="col-12">
-              <div class="logForm">
-              <form @submit.prevent="loginEmp">
-                  <div class="logform">
-                    <input v-model="newEmp.passcode" class="text-center" type="password" placeholder="Enter Passcode" name="passcode" required><br>
-                    <center>
-                    <b-button type="submit" variant="primary">Login</b-button>
-                    <div class="divider" />
-                    <b-button type="button" class="cancelbtn"> Cancel</b-button></center><br>
-                  </div>
-            </form>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </body-->
+        <div>
     <body>
       <div class="modal-dialog text-center background">
         <div class="col-sm-8 main-section">
@@ -32,36 +9,16 @@
             </div>
             <div class="col-12">
               <div class="logForm">
-                <form @submit.prevent="loginUser">
-                  <div class="h-100 row align-items-center">
-                    <div class="col">
-                      <input
-                        v-model="newUser.email"
-                        type="text"
-                        placeholder="Enter Email"
-                        required
-                        class="text-center"
-                      /><br />
-                      <input
-                        v-model="newUser.password"
-                        type="password"
-                        placeholder="Enter Password"
-                        required
-                        class="text-center"
-                      /><br />
-                      <center>
-                        <b-button type="submit" class="logbtn">Log in</b-button>
-                        <div class="divider" />
-                        <b-button type="button" class="btn">Cancel</b-button>
-                      </center>
-                      <br />
-                      <div class="empColor">
-                        Are you an Employee?
-                        <router-link to="/empLogin"> Click Here </router-link>
-                      </div>
-                    </div>
+               <form @submit.prevent="loginEmp">
+                  <div class="logform">
+                    <input v-model="newEmp.passcode" type="text" placeholder="Enter passcode" name="passcode" required><br>
+                    <center>
+                     <b-button type="submit" variant="primary">Log in</b-button>
+                    <b-button type="button" variant="outline-primary" href="/">Cancel</b-button>
+                    </center><br>
+
                   </div>
-                </form>
+            </form>
               </div>
             </div>
           </div>
@@ -102,13 +59,17 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+body {
+  background: url('https://ibb.co/Xx0knsB');
+  font-family: 'Source Sans Pro', sans-serif;
+}
 .main-section {
   margin: 0 auto;
   margin-top: 130px;
   padding: 0;
 }
 .modal-content {
-  background-color: darkslategray;
+  background-color: #123c52;
   opacity: 0.95;
   padding: 0 18px;
   box-shadow: 0px 0px 3px #848484;
@@ -172,8 +133,5 @@ export default {
 .carousel-inner img {
   width: 100%;
   height: 100%;
-}
-.fixPos{
-  margin-top: -750px;
 }
 </style>

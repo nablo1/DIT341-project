@@ -1,54 +1,36 @@
 <template>
-    <!--div>
-        <div  v-for="item in items" v-bind:key="item._id">
-            <item-comp v-bind:item="item"/>
+  <div class="modal-dialog text-center background">
+    <div class="col-sm-8 main-section">
+      <div class="modal-content fixPos">
+        <div class="col-12 cusImage">
+          <img src="@/assets/customer.png" />
         </div>
-        <b-button v-if="checkEmp()" variant="danger" @click="deleteItems">Delete all items</b-button>
-        <b-button v-if="checkEmp()" type="button" variant="outline-primary" href="/add-to-menu">Add an item</b-button>
-        <b-button v-if="checkEmp()" variant="danger" @click="showMsgBox">Delete all items</b-button>
-     </div-->
-<div>
-  <body>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="bg-image">
-            <img src="@/assets/background.png" class="backgroundImg" />
-          </div>
-          <div class="carousel-caption">
-            <div class="modal-dialog text-center">
-              <div class="col-sm-8 main-section">
-                <div class="modal-content fixPos">
-                  <div class="col-12 cusImage">
-                    <img src="@/assets/icon.jpeg" />
-                  </div>
-                  <div class="col-12">
-                    <div>
-                      <div>
-                        <div>
-                          <div  v-for="item in items" v-bind:key="item._id">
-            <item-comp v-bind:item="item"/>
-        </div>
-        <b-button v-if="checkEmp()" type="button" variant="outline-primary" href="/add-to-menu">Add an item</b-button>
-        <b-button v-if="checkEmp()" variant="danger" @click="showMsgBox">Delete all items</b-button>
-     </div>
-                      </div>
-                      <div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <div class="col-12">
+          <div class="logForm">
+            <div>
+              <div v-for="item in items" v-bind:key="item._id">
+                <item-comp v-bind:item="item" />
               </div>
+              <b-button
+                v-if="checkEmp()"
+                type="button"
+                variant="outline-primary"
+                href="/add-to-menu"
+                >Add an item</b-button
+              >
+              <b-button v-if="checkEmp()" variant="danger" @click="showMsgBox"
+                >Delete all items</b-button
+              >
             </div>
           </div>
         </div>
       </div>
-    </body>
-</div>
-
+    </div>
+    <hr class="pushDown">
+  </div>
 </template>
 
 <script>
-
 import { Api } from '@/Api'
 import ItemComp from '@/components/ItemComp.vue'
 const swal = require('sweetalert')
@@ -63,33 +45,34 @@ export default {
   },
   data() {
     return {
-      items: []
+      items: [],
+      box: ''
     }
   },
   methods: {
     deleteItems() {
       Api.delete('/items')
-        .then(response => {
+        .then((response) => {
           swal('Success', 'Items deleted', 'success')
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error)
           swal('Error', 'Something Went Wrong', 'error')
         })
     },
     getItems() {
       Api.get('/items')
-        .then(response => {
+        .then((response) => {
           this.items = response.data.items
         })
-        .catch(error => {
+        .catch((error) => {
           this.message = error.message
           console.error(error)
           this.items = []
-        // TODO: display error message
+          // TODO: display error message
         })
         .then(() => {
-        //   This code is always executed at the end. After success or failure.
+          //   This code is always executed at the end. After success or failure.
         })
     },
     checkEmp() {
@@ -97,16 +80,39 @@ export default {
         return false
       }
       return true
+    },
+    showMsgBox() {
+      this.box = ''
+      this.$bvModal
+        .msgBoxConfirm('Are you sure you want to delete all items?', {
+          title: 'Please Confirm',
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'danger',
+          okTitle: 'YES',
+          cancelTitle: 'NO',
+          footerClass: 'p-2',
+          hideHeaderClose: false,
+          centered: true
+        })
+        .then((value) => {
+          this.box = value
+          if (value) {
+            this.deleteItems()
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }
 </script>
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
 body {
-  background: url('https://ibb.co/Xx0knsB');
-  background-size: cover;
-  font-family: 'Source Sans Pro', sans-serif;
+  background: url("https://ibb.co/Xx0knsB");
+  font-family: "Source Sans Pro", sans-serif;
 }
 .main-section {
   margin: 0 auto;
@@ -114,7 +120,7 @@ body {
   padding: 0;
 }
 .modal-content {
-  background-color: darkslategray;
+  background-color: #123c52;
   opacity: 0.95;
   padding: 0 18px;
   box-shadow: 0px 0px 3px #848484;
@@ -179,7 +185,8 @@ body {
   width: 100%;
   height: 100%;
 }
-.fixPos{
-  margin-top: -750px;
+.pushDown{
+  margin-bottom: 270px;
+  border-top: transparent;
 }
 </style>

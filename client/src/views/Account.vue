@@ -1,35 +1,40 @@
 <template>
-     <body>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="bg-image">
-          <img src="@/assets/background.png" class="backgroundImg"></div>
-          <div class="carousel-caption">
-             <div class="modal-dialog text-center">
-             <div class="col-sm-8 main-section">
-            <div class="modal-content fixPos">
-            <div class="col-12 cusImage">
-              <img src="@/assets/customer.png" /></div>
-            <div class="col-12">
-               <div>
-             <b-button type="button" variant="outline-primary" :href="'/users/' + this.userId + '/orders'">My orders</b-button>
-             <div class="divider" />
-             <b-button type="button" variant="outline-primary" href='/menu'>Place an order</b-button>
-             <div class="divider" />
-             <b-button type="button" variant="outline-primary" :href="'/users/' + this.userId + '/edit'">Update account intormation</b-button>
-              </div>
+  <body>
+    <div class="modal-dialog text-center background">
+      <div class="col-sm-8 main-section">
+        <div class="modal-content fixPos">
+          <div class="col-12 cusImage">
+            <img src="@/assets/customer.png" />
+          </div>
+          <div class="col-12">
+            <div class="logForm">
+              <div>
+                <b-button
+                  type="button"
+                  variant="outline-primary"
+                  :href="'/users/' + this.userId + '/orders'"
+                  >My orders</b-button
+                >
+                <b-button type="button" variant="outline-primary" href="/menu"
+                  >Place an order</b-button
+                >
+                <b-button
+                  type="button"
+                  variant="outline-primary"
+                  :href="'/users/' + this.userId + '/edit'"
+                  >Update account intormation</b-button
+                >
               </div>
             </div>
           </div>
         </div>
-          </div>
       </div>
-        </div>
-    </body>
+    </div>
+    <hr class="pushDown" />
+  </body>
 </template>
 
 <script>
-
 import { Api } from '@/Api'
 export default {
   name: 'account',
@@ -48,16 +53,16 @@ export default {
   methods: {
     getUser() {
       Api.get('/users/' + this.userId)
-        .then(response => {
+        .then((response) => {
           this.user = response.data
         })
-        .catch(error => {
+        .catch((error) => {
           this.message = error.message
           console.error(error)
           this.user = null
         })
         .then(() => {
-        // This code is always executed (after success or error).
+          // This code is always executed (after success or error).
         })
     },
     getUserId() {
@@ -66,16 +71,15 @@ export default {
   }
 }
 </script>
-
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
 body {
-  background: url('https://ibb.co/Xx0knsB');
-  background-size: cover;
-  font-family: 'Source Sans Pro', sans-serif;
+  background: url("https://ibb.co/Xx0knsB");
+  font-family: "Source Sans Pro", sans-serif;
 }
 .main-section {
   margin: 0 auto;
+  margin-top: 130px;
   padding: 0;
 }
 .modal-content {
@@ -143,5 +147,9 @@ body {
 .carousel-inner img {
   width: 100%;
   height: 100%;
+}
+.pushDown {
+  margin-bottom: 400px;
+  border-top: transparent;
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <title>OnFire</title>
     <NaviBar />
     <!-- Render the content of the current page view -->
     <router-view/>

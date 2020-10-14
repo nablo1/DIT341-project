@@ -18,7 +18,6 @@
                       <div>
                         <div>
                           <order-comp v-bind:ordersList="orders"></order-comp>
-                          <button @click="getOrders()">get orders</button>
                           <b-button
                             type="button"
                             variant="outline-primary"

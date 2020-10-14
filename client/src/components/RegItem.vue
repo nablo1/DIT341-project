@@ -1,61 +1,112 @@
 <template>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="bg-image">
-          <img src="@/assets/background.png" class="backgroundImg" /></div>
-          <div class="carousel-caption center">
-            <h1><center>Register</center></h1>
-            <form @submit.prevent="registerUser">
+  <div>
+    <body>
+      <div class="modal-dialog text-center background">
+        <div class="col-sm-8 main-section">
+          <div class="modal-content fixPos">
+            <div class="col-12 cusImage">
+              <img src="@/assets/customer.png" />
+            </div>
+            <div class="col-12">
+              <div class="logForm">
+               <form @submit.prevent="loginEmp">
                   <div class="logform">
-                    <label>Email : </label>
-                    <input v-model="newUser.email" type="text" placeholder="Enter Email" required><br>
-                    <label>Password : </label>
-                    <input v-model="newUser.password" type="text" placeholder="Enter Password" required><br>
+                    <label>Passcode: </label>
+                    <input v-model="newEmp.passcode" type="text" placeholder="Enter passcode" name="passcode" required><br>
                     <center>
-                    <b-button type="submit" variant="primary"> Register</b-button>
+                     <b-button type="submit" variant="primary">Log in</b-button>
                     <b-button type="button" variant="outline-primary" href="/">Cancel</b-button>
-                    </center>
+                    </center><br>
+
                   </div>
             </form>
+              </div>
+            </div>
           </div>
-      </div>
         </div>
-
+      </div>
+    </body>
+  </div>
 </template>
 
 <script>
-import { Api } from '@/Api'
 const swal = require('sweetalert')
-
 export default {
   data() {
     return {
-      newUser: {
-        email: '',
-        password: ''
+      newEmp: {
+        passcode: ''
       }
     }
   },
   methods: {
-    registerUser() {
-      Api.post('/users', this.newUser)
-        .then(response => {
-          swal('Success', 'Registeration Successful', 'success')
-          this.$router.push('/login')
-        })
-        .catch(error => {
-          console.log(error)
-          swal('Error', 'Something Went Wrong', 'error')
-        })
-        .then(() => {
-          // This code is always executed (after success or error).
-        })
+    async loginEmp() {
+      try {
+        const response = await this.$http.post('/employees/login', this.newEmp)
+        const token = response.data.token
+        localStorage.setItem('jwtemp', token)
+        if (token) {
+          swal('Success', 'Login Successful', 'success')
+          this.$router.push('/')
+        }
+      } catch (err) {
+        swal('Error', 'Something Went Wrong', 'error')
+        console.log(err.response)
+      }
     }
   }
 }
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+body {
+  background: url('https://ibb.co/Xx0knsB');
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.main-section {
+  margin: 0 auto;
+  margin-top: 130px;
+  padding: 0;
+}
+.modal-content {
+  background-color: #123c52;
+  opacity: 0.95;
+  padding: 0 18px;
+  box-shadow: 0px 0px 3px #848484;
+}
+.cusImage img {
+  height: 100px;
+  width: 100px;
+  box-shadow: 0px 0px 2px #848484;
+  margin-top: -50px;
+  margin-bottom: 40px;
+}
+.logForm {
+  margin-bottom: 25px;
+  border-radius: 5px;
+}
+.logForm input {
+  height: 42px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+.btn {
+  background-color: black;
+  color: white;
+  padding-left: 10px;
+  height: 40px;
+}
+.divider {
+  width: 5px;
+  height: auto;
+  display: inline-block;
+}
+.empColor {
+  color: white;
+}
+/* BLUR BACKGROUND SECTION */
+
 .bg-image {
   /* The image used */
   /* Add the blur effect */
@@ -70,7 +121,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.backgroundImg{
+.backgroundImg {
   width: 100%;
   height: 100%;
 }
@@ -80,5 +131,8 @@ export default {
   width: 50%;
   padding: 10px;
 }
-
+.carousel-inner img {
+  width: 100%;
+  height: 100%;
+}
 </style>

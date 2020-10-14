@@ -5,13 +5,13 @@
         <div class="col-sm-8 main-section">
           <div class="modal-content fixPos">
             <div class="col-12 cusImage">
-              <img src="@/assets/customer.png" />
+              <img src="@/assets/employee.png" />
             </div>
             <div class="col-12">
               <div class="logForm">
                <form @submit.prevent="loginEmp">
                   <div class="logform">
-                    <input v-model="newEmp.passcode" type="text" placeholder="Enter passcode" name="passcode" required><br>
+                    <input v-model="newEmp.passcode" type="password" placeholder="Enter passcode" name="passcode" required><br>
                     <center>
                      <b-button type="submit" variant="primary">Log in</b-button>
                     <b-button type="button" variant="outline-primary" href="/">Cancel</b-button>
@@ -69,7 +69,7 @@ body {
   padding: 0;
 }
 .modal-content {
-  background-color: #123c52;
+  background-color: #2cb693;
   opacity: 0.95;
   padding: 0 18px;
   box-shadow: 0px 0px 3px #848484;

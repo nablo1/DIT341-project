@@ -1,49 +1,25 @@
 <template>
-  <div>
-    <body>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="bg-image">
-            <img src="@/assets/background.png" class="backgroundImg" />
-          </div>
-          <div class="carousel-caption">
-            <div class="modal-dialog text-center">
-              <div class="col-sm-8 main-section">
-                <div class="modal-content fixPos">
-                  <div class="col-12 cusImage">
-                    <img src="@/assets/icon.jpeg" />
-                  </div>
-                  <div class="col-12">
-                    <div>
-                      <div>
-                        <div>
-                          <order-comp v-bind:ordersList="orders"></order-comp>
-                          <b-button
-                            type="button"
-                            variant="outline-primary"
-                            :href="'/users/' + this.userId"
-                            >Back to account</b-button
-                          >
-                          <div v-for="order in orders" v-bind:key="order._id">
-                            <order-comp v-bind:order="order" />
-                          </div>
-                        </div>
-                      </div>
-                      <div></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+<div>
+ <hr class="pushDown">
+     <div class="modal-dialog text-center">
+    <div class="col-sm-8 main-section">
+      <div class="modal-content">
+        <div class="col-12 cusImage">
+          <img src="@/assets/customer.png" />
         </div>
-      </div>
-    </body>
-  </div>
-  <!--div>
+        <div class="col-12">
+          <div class="logForm">
+            <div>
       <order-comp v-bind:ordersList="orders"></order-comp>
       <b-button type="button" variant="outline-primary" :href="'/users/' + this.userId">Back to account</b-button>
-     </div-->
+     </div>
+        </div>
+      </div>
+    </div>
+    <hr class="pushDown">
+  </div>
+     </div>
+</div>
 </template>
 
 <script>
@@ -62,7 +38,9 @@ export default {
   created() {
     this.userId = this.$route.params.id
   },
-  mounted() {},
+  mounted() {
+    this.getOrders()
+  },
   methods: {
     getOrders() {
       Api.get('/users/' + this.userId + '/orders')

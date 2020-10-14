@@ -1,49 +1,52 @@
 <template>
-    <!--div>
-
-        <form @submit.prevent="updateEmail">
-              <input v-model="newEmail.email" class="input" type="text" placeholder="New Email" required>
-              <b-button type="submit" variant="primary">Update Email</b-button>
-            </form>
-            <form @submit.prevent="updatePassword">
-              <input v-model="newPassword.password" class="input" type="text" placeholder="New Password" required>
-              <b-button type="submit" variant="primary">Update Password</b-button>
-            </form>
-            <b-button type="button" variant="outline-primary" :href="'/users/' + this.userId">Back to account</b-button>
-    </div-->
-    <div>
-      <body>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="bg-image">
-          <img src="@/assets/background.png" class="backgroundImg"></div>
-          <div class="carousel-caption">
-             <div class="modal-dialog text-center">
-             <div class="col-sm-8 main-section">
-            <div class="modal-content fixPos">
-            <div class="col-12 cusImage">
-              <img src="@/assets/employee.png" /></div>
-            <div class="col-12">
-              <div class="logForm">
-              <form @submit.prevent="updateEmail">
-                <div>
-              <input v-model="newEmail.email" class="input" type="text" placeholder="New Email" required>
-              <b-button type="submit" variant="primary">Update Email</b-button></div>
-            </form>
-            <form @submit.prevent="updatePassword">
-              <input v-model="newPassword.password" class="input" type="password" placeholder="New Password" required>
-              <b-button type="submit" variant="primary">Update Password</b-button>
-            </form>
-              </div>
+  <div>
+    <div class="modal-dialog text-center background">
+      <div class="col-sm-8 main-section">
+        <div class="modal-content fixPos">
+          <div class="col-12 cusImage">
+            <img src="@/assets/customer.png" />
+          </div>
+          <div class="col-12">
+            <div class="logForm">
+              <div>
+                <form @submit.prevent="updateEmail">
+                  <input
+                    v-model="newEmail.email"
+                    class="input"
+                    type="text"
+                    placeholder="New Email"
+                    required
+                  />
+                  <b-button type="submit" variant="primary"
+                    >Update Email</b-button
+                  >
+                </form>
+                <form @submit.prevent="updatePassword">
+                  <input
+                    v-model="newPassword.password"
+                    class="input"
+                    type="text"
+                    placeholder="New Password"
+                    required
+                  />
+                  <b-button type="submit" variant="primary"
+                    >Update Password</b-button
+                  >
+                </form>
+                <b-button
+                  type="button"
+                  variant="outline-primary"
+                  :href="'/users/' + this.userId"
+                  >Back to account</b-button
+                >
               </div>
             </div>
           </div>
         </div>
-          </div>
       </div>
-        </div>
-    </body>
+      <hr class="pushDown" />
     </div>
+  </div>
 </template>
 
 <script>
@@ -69,39 +72,37 @@ export default {
   methods: {
     updateEmail() {
       Api.patch('/users/' + this.userId, this.newEmail)
-        .then(response => {
+        .then((response) => {
           swal('Success', 'Email updated', 'success')
         })
-        .catch(error => {
+        .catch((error) => {
           this.message = error.message
           console.error(error)
           swal('Error', 'Something Went Wrong', 'error')
         })
-        .then(() => {
-        })
+        .then(() => {})
     },
     updatePassword() {
       Api.patch('/users/' + this.userId, this.newPassword)
-        .then(response => {
+        .then((response) => {
           swal('Success', 'Password updated', 'success')
         })
-        .catch(error => {
+        .catch((error) => {
           this.message = error.message
           console.error(error)
           swal('Error', 'Something Went Wrong', 'error')
         })
-        .then(() => {
-        })
+        .then(() => {})
     }
   }
 }
 </script>
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
 body {
-  background: url('https://ibb.co/Xx0knsB');
+  background: url("https://ibb.co/Xx0knsB");
   background-size: cover;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 .main-section {
   margin: 0 auto;
@@ -174,7 +175,7 @@ body {
   width: 100%;
   height: 100%;
 }
-.fixPos{
+.fixPos {
   margin-top: -750px;
 }
 </style>

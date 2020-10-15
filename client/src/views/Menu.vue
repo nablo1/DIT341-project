@@ -3,7 +3,7 @@
     <div class="col-sm-8 main-section">
       <div class="modal-content fixPos">
         <div class="col-12 cusImage">
-          <img src="@/assets/customer.png" />
+          <img src="@/assets/favicon.jpeg" />
         </div>
         <div class="col-12">
           <div class="logForm">
@@ -120,7 +120,7 @@ body {
   padding: 0;
 }
 .modal-content {
-  background-color: #123c52;
+  background-color:  rgb(34, 33, 33);
   opacity: 0.95;
   padding: 0 18px;
   box-shadow: 0px 0px 3px #848484;

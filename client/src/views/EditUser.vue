@@ -1,52 +1,34 @@
 <template>
-  <div>
-    <div class="modal-dialog text-center background">
-      <div class="col-sm-8 main-section">
-        <div class="modal-content fixPos">
-          <div class="col-12 cusImage">
-            <img src="@/assets/customer.png" />
-          </div>
-          <div class="col-12">
-            <div class="logForm">
-              <div>
-                <form @submit.prevent="updateEmail">
-                  <input
-                    v-model="newEmail.email"
-                    class="input"
-                    type="text"
-                    placeholder="New Email"
-                    required
-                  />
-                  <b-button type="submit" variant="primary"
-                    >Update Email</b-button
-                  >
-                </form>
-                <form @submit.prevent="updatePassword">
-                  <input
-                    v-model="newPassword.password"
-                    class="input"
-                    type="text"
-                    placeholder="New Password"
-                    required
-                  />
-                  <b-button type="submit" variant="primary"
-                    >Update Password</b-button
-                  >
-                </form>
-                <b-button
-                  type="button"
-                  variant="outline-primary"
-                  :href="'/users/' + this.userId"
-                  >Back to account</b-button
-                >
+    <body>
+      <div class="modal-dialog text-center background">
+        <div class="col-sm-8 main-section">
+          <div class="modal-content fixPos">
+            <div class="col-12 cusImage">
+              <img src="@/assets/customer.png" />
+            </div>
+            <div class="col-12">
+              <div class="logForm">
+               <div>
+                  <form @submit.prevent="updateEmail">
+              <input v-model="newEmail.email" class="input" type="text" placeholder="New Email" required>
+              <b-button type="submit" variant="primary">Update Email</b-button>
+            </form>
+            <div class="divider" />
+            <form @submit.prevent="updatePassword">
+              <input v-model="newPassword.password" class="input" type="text" placeholder="New Password" required>
+              <b-button type="submit" variant="primary">Update Password</b-button>
+              <div class="divider" />
+            </form>
+            <div class="divider" />
+            <b-button type="button" variant="outline-primary" :href="'/users/' + this.userId">Back to account</b-button>
+               </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <hr class="pushDown" />
-    </div>
-  </div>
+      <hr class="pushDown">
+    </body>
 </template>
 
 <script>
@@ -72,37 +54,38 @@ export default {
   methods: {
     updateEmail() {
       Api.patch('/users/' + this.userId, this.newEmail)
-        .then((response) => {
+        .then(response => {
           swal('Success', 'Email updated', 'success')
         })
-        .catch((error) => {
+        .catch(error => {
           this.message = error.message
           console.error(error)
           swal('Error', 'Something Went Wrong', 'error')
         })
-        .then(() => {})
+        .then(() => {
+        })
     },
     updatePassword() {
       Api.patch('/users/' + this.userId, this.newPassword)
-        .then((response) => {
+        .then(response => {
           swal('Success', 'Password updated', 'success')
         })
-        .catch((error) => {
+        .catch(error => {
           this.message = error.message
           console.error(error)
           swal('Error', 'Something Went Wrong', 'error')
         })
-        .then(() => {})
+        .then(() => {
+        })
     }
   }
 }
 </script>
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 body {
-  background: url("https://ibb.co/Xx0knsB");
-  background-size: cover;
-  font-family: "Source Sans Pro", sans-serif;
+  background: url('https://ibb.co/Xx0knsB');
+  font-family: 'Source Sans Pro', sans-serif;
 }
 .main-section {
   margin: 0 auto;
@@ -110,7 +93,7 @@ body {
   padding: 0;
 }
 .modal-content {
-  background-color: darkslategray;
+  background-color: #123c52;
   opacity: 0.95;
   padding: 0 18px;
   box-shadow: 0px 0px 3px #848484;
@@ -175,7 +158,8 @@ body {
   width: 100%;
   height: 100%;
 }
-.fixPos {
-  margin-top: -750px;
+.pushDown{
+  margin-bottom: 350px;
+  border-top: transparent;
 }
 </style>

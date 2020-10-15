@@ -1,7 +1,7 @@
 <template>
   <div>
   <b-navbar toggleable="lg" type="dark" variant="dark">
-    <b-navbar-brand href="#">OnFire</b-navbar-brand>
+    <b-navbar-brand href="/">OnFire</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -9,6 +9,7 @@
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
+        <b-nav-item><router-link to="/" class="nav-link"> Home</router-link></b-nav-item>
         <b-nav-item><router-link to="/menu" class="nav-link"> Menu</router-link></b-nav-item>
         <b-nav-item><router-link v-if="checkEmp()" to="/all-orders" class="nav-link" >  Check orders</router-link></b-nav-item>
         <b-nav-item><router-link v-if="checkLoggedIn()" :to="'/users/'+this.getUserId()" class="nav-link" >  Account</router-link></b-nav-item>
@@ -31,22 +32,6 @@ export default {
     handleView() {
       this.mobileView = window.innerWidth <= 990
     },
-    logUserOut() {
-      localStorage.removeItem('jwt')
-      localStorage.removeItem('jwtemp')
-      this.$router.push('/login')
-    },
-    getEmpDetails() {
-      const token = localStorage.getItem('jwtemp')
-      const decoded = VueJwtDecode.decode(token)
-      this.emp = decoded
-      console.log(this.emp)
-    },
-    getUserDetails() {
-      const token = localStorage.getItem('jwt')
-      const decoded = VueJwtDecode.decode(token)
-      this.user = decoded
-    },
     checkLoggedIn() {
       if (localStorage.getItem('jwt') == null) {
         return false
@@ -60,11 +45,11 @@ export default {
       return true
     },
     getUserId() {
+      const token = localStorage.getItem('jwt')
+      const decoded = VueJwtDecode.decode(token)
+      this.user = decoded
       return this.user._id
     }
-  },
-  created() {
-    this.getUserDetails()
   }
 }
 </script>

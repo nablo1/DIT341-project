@@ -5,17 +5,23 @@
       <div class="col-md-4">
         <p>Address</p>
         <hr class="light">
-        <p>INFO ON THE RESTURANT</p>
+        <p>Lindholmspiren 5, 402 78 Göteborg</p>
       </div>
       <div class="col-md-4">
         <p>Opening Hours</p>
         <hr class="light">
-        <p>INFO</p>
+        <p>Mon-Fri: 10AM - 10PM
+          <br>
+          Sat, Sun: 11AM - 08PM
+        </p>
       </div>
       <div class="col-md-4">
         <p>Contact Us</p>
         <hr class="light">
-        <p>Social 5ara</p>
+        <p>Tel: 0520–33 44 55
+          <br>
+          Facebook.com/OnFire
+        </p>
       </div>
       <div class="col-12">
         <hr class="light">

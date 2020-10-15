@@ -115,7 +115,7 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 body {
-  background: url('https://ibb.co/Xx0knsB');
+  background: transparent;
 }
 .main-section {
   margin: 0 auto;

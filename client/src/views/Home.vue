@@ -4,7 +4,7 @@
         <div class="carousel-item active">
           <img src="@/assets/background.png">
           <div class="carousel-caption">
-            <h4 class="responsiveText display-2"><center> Order your food and pick it up anytime you want! </center></h4>
+            <h4 class="responsiveText display-2 txt"><center> Order your food and pick it up anytime you want! </center></h4>
             <b-button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg" href="/login">
               Log In
               </b-button>
@@ -73,6 +73,9 @@ export default {
 .pushDown {
   margin-bottom: 300px;
   border-top: transparent;
+}
+.txt {
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 @media screen and (max-width: 601px) {
   .responsiveText{

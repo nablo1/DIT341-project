@@ -64,7 +64,7 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 body {
-  background: url('https://ibb.co/Xx0knsB');
+  background: transparent;
   background-size: cover;
   font-family: 'Source Sans Pro', sans-serif;
 }

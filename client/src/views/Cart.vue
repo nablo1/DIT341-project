@@ -128,6 +128,7 @@ export default {
 body {
   background: url("https://ibb.co/Xx0knsB");
   font-family: "Source Sans Pro", sans-serif;
+  color: white;
 }
 .main-section {
   margin: 0 auto;

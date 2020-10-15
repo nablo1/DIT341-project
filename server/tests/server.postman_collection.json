@@ -17,13 +17,9 @@
 							" var itemId = jsonData._id;\r",
 							" pm.environment.set(\"item_id\", itemId);\r",
 							"\r",
+							"\r",
 							"pm.test(\"Correct status code\", () => {\r",
 							"  pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Test data type of the response\", () => {\r",
-							"  pm.expect(jsonData.name).to.be.a(\"string\");\r",
-							"  pm.expect(jsonData.price).to.be.a(\"number\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -35,13 +31,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRoaWFnb0BuYWJsby5jb20iLCJfaWQiOiI1ZjY0ZTUyNjUxYTM5MTE1YTRhMzQ4M2QiLCJpYXQiOjE2MDA1Mjc0MjUsImV4cCI6MTYwMDUzMTAyNX0.T7WH_InBnGg3V-BoRskwy22aVxQ-WGQvBsZJV9-SkFg",
+						"value": "Bearer {{user_token}}",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"Burger\",\r\n    \"price\" :75\r\n}",
+					"raw": "{\r\n    \"name\" : \"Chicken burger\",\r\n    \"price\" : 75\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -125,7 +121,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \r\n}",
+					"raw": "{\r\n    \"price\" : 60\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -212,7 +208,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"mina@nablo.com\",\r\n    \"password\" : \"mina\"\r\n}",
+					"raw": "{\r\n    \"email\": \"ag19@gu.se\",\r\n    \"password\" : \"ag19\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -261,7 +257,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"mina@nablo.com\",\r\n    \"password\" : \"mina\"\r\n}",
+					"raw": "{\r\n    \"email\": \"ag19@gu.se\",\r\n    \"password\" : \"ag19\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -301,7 +297,7 @@
 				}
 			],
 			"request": {
-				"method": "PUT",
+				"method": "PATCH",
 				"header": [
 					{
 						"key": "Authorization",
@@ -311,7 +307,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"notthiago@nablo.com\"\r\n}",
+					"raw": "{\r\n    \"email\": \"ag00@gu.se\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -416,62 +412,12 @@
 			"response": []
 		},
 		{
-			"name": "Update a prop of a user",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "bcf456d6-a474-4fd5-816b-4cef0f847c2f",
-						"exec": [
-							"pm.test(\"Correct status code\", function() {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "Bearer {{user_token}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "[\r\n    {\"propName\" : \"email\" , \"value\" : \"not@thiago.se\"}\r\n]",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/users/{{user_id}}",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"users",
-						"{{user_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Create an order",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "3e69d67d-8c00-45ff-be1b-579f7fc8f9ae",
+						"id": "1a1b8fbd-f2fd-4aa1-b819-cb2cefb00d76",
 						"exec": [
 							" var jsonData = pm.response.json();\r",
 							" var orderId = jsonData._id;\r",
@@ -497,7 +443,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"items\" : [\r\n       {\"_id\" : \"5f64e54e51a39115a4a3483e\", \"quantity\" : 3},\r\n       {\"_id\" : \"5f64e55651a39115a4a3483f\",\"quantity\" : 1 }\r\n       \r\n    ]\r\n}\r\n",
+					"raw": "{\r\n    \"items\" : [\r\n       {\"_id\": \"{{item_id}}\", \"quantity\": 4}\r\n       \r\n    ],\r\n    \"pickUpTime\" : \"At\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -601,59 +547,6 @@
 						"users",
 						"{{user_id}}",
 						"orders"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update an order",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "a05e747f-a204-40e7-b1f3-96cb02eb3351",
-						"exec": [
-							"pm.test(\"Correct status code\", function() {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{user_token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"items\": [\r\n        \"5f634c4f8e20c530b8497946\"   \r\n    ]\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/users/{{user_id}}/orders/{{order_id}}",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"users",
-						"{{user_id}}",
-						"orders",
-						"{{order_id}}"
 					]
 				}
 			},
@@ -769,7 +662,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"items\" : [\r\n       \"5f63aa2fd25f4c1fe4204dc2\",\r\n       \"5f63aa38d25f4c1fe4204dc3\"\r\n    ]\r\n}\r\n",
+					"raw": "{\r\n    \"items\" : [\r\n       {\"_id\": \"{{item_id}}\", \"quantity\": 4}\r\n       \r\n    ],\r\n    \"pickUpTime\" : \"At\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -794,7 +687,7 @@
 			"response": []
 		},
 		{
-			"name": "Delete all orders",
+			"name": "Delete all orders for a user",
 			"event": [
 				{
 					"listen": "test",
@@ -877,12 +770,12 @@
 			"response": []
 		},
 		{
-			"name": "Create an item Copy",
+			"name": "Create an item Copy 2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "8a42c156-a233-4b58-86f0-87a055bba45b",
+						"id": "8cef2945-bed8-47b0-88c0-768bd8920528",
 						"exec": [
 							" var jsonData = pm.response.json();\r",
 							" var itemId = jsonData._id;\r",
@@ -891,13 +784,7 @@
 							"pm.test(\"Correct status code\", () => {\r",
 							"  pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
 							"});\r",
-							"\r",
-							"pm.test(\"The response has all properties\", () => {\r",
-							"    var responseJson = pm.response.json();\r",
-							"    pm.expect(responseJson.name).to.eql('Fries');\r",
-							"    pm.expect(responseJson.price).to.eql(35);\r",
-							"    \r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -914,7 +801,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"Fries\",\r\n    \"price\" : 35\r\n}",
+					"raw": "{\r\n    \"name\" : \"Onion rings\",\r\n    \"price\" : 75\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1011,7 +898,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"meno@nablo.com\",\r\n    \"password\" : \"meno\"\r\n}",
+					"raw": "{\r\n    \"email\": \"nablo@gu.se\",\r\n    \"password\" : \"nablo\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1110,6 +997,41 @@
 					"path": [
 						"api",
 						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete all orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d85be93-5978-4caf-a7ca-716bf931c589",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders",
+						""
 					]
 				}
 			},

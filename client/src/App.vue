@@ -10,7 +10,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import VueJwtDecode from 'vue-jwt-decode'
 import NaviBar from '@/components/NaviBar.vue'
 import Myfooter from '@/components/footer.vue'
 export default {
@@ -22,37 +21,6 @@ export default {
   methods: {
     handleView() {
       this.mobileView = window.innerWidth <= 990
-    },
-    logUserOut() {
-      localStorage.removeItem('jwt')
-      localStorage.removeItem('jwtemp')
-      this.$router.push('/login')
-    },
-    getEmpDetails() {
-      const token = localStorage.getItem('jwtemp')
-      const decoded = VueJwtDecode.decode(token)
-      this.emp = decoded
-      console.log(this.emp)
-    },
-    getUserDetails() {
-      const token = localStorage.getItem('jwt')
-      const decoded = VueJwtDecode.decode(token)
-      this.user = decoded
-    },
-    checkLoggedIn() {
-      if (localStorage.getItem('jwt') == null) {
-        return false
-      }
-      return true
-    },
-    checkEmp() {
-      if (localStorage.getItem('jwtemp') == null) {
-        return false
-      }
-      return true
-    },
-    getUserId() {
-      return this.user._id
     }
   },
   components: {
@@ -67,7 +35,6 @@ export default {
     }
   },
   created() {
-    this.getUserDetails()
     this.handleView()
     window.addEventListener('resize', this.handleView)
   }

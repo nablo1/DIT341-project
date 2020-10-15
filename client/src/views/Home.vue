@@ -70,6 +70,10 @@ export default {
 .whitefont{
   text-decoration-color: white;
 }
+.pushDown {
+  margin-bottom: 300px;
+  border-top: transparent;
+}
 @media screen and (max-width: 601px) {
   .responsiveText{
     font-size: 80px;

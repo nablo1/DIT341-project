@@ -1,7 +1,7 @@
 <template>
     <div>
       <div>
-          <EmpLoginItem/>
+          <RegItem/>
       </div>
       <div>
         <hr class="pushDown">
@@ -11,16 +11,16 @@
 
 <script>
 
-import EmpLoginItem from '@/components/EmpLoginItem.vue'
+import RegItem from '@/components/RegItem.vue'
 
 export default {
-  name: 'emp-login',
+  name: 'login',
   components: {
-    EmpLoginItem
+    RegItem
   },
   data() {
     return {
-      emp: {}
+      user: {}
     }
   }
 }

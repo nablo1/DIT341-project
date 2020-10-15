@@ -31,7 +31,7 @@ export default new Vuex.Store({
       state.shopCart.splice(item, 1)
     },
     SET_CART_LIST: (state) => {
-      state.shopCart = state.emptyCart
+      state.shopCart = []
     }
   },
   actions: {

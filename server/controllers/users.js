@@ -133,7 +133,12 @@ router.delete('/api/users', function (req, res, next) {
 });
 
 router.post('/api/users/:id/orders', function(req, res, next) {
-    var order = new Order(req.body);
+    var order = new Order({
+        'items':req.body.items,
+        'user':req.params.id,
+        createdAt: req.body.createdAt,
+        pickUpTime: req.body.pickUpTime
+    });
     order.save(function(err, order) {
         if (err) { return next(err); }
        res.json(order);
@@ -148,18 +153,24 @@ router.post('/api/users/:id/orders', function(req, res, next) {
     });
  });
 
- router.get('/api/users/:id/orders', function(req, res, next) {
-    User.findById(req.params.id).select('orders').populate('orders').exec()
-    .then(user => {
-        if (!user) {
+router.get('/api/users/:id/orders', function (req, res, next) {
+
+
+    Order.find({ 'user': req.params.id }, function (err, order) {
+        if (!order) {
+
             return res.status(404).json({
-              message: "User not found"
+                message: "There are no orders"
             });
-          }
-          res.status(200).json(user)
-    }).catch(err => {
-        res.status(500).json({ error: err});
-      });
+        }
+        res.status(200).json({ 'order': order });
+    }).populate([{
+        path: 'items._id',
+        model: 'Item'
+    },]).catch(err => {
+
+        res.status(500).json({ error: err });
+    });
 });
 
 router.get('/api/users/:userId/orders/:orderId', function(req, res, next) {

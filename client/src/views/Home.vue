@@ -1,27 +1,24 @@
 <template>
   <body>
-  <div>
-    <div class="top-icon">
-        <img src="../assets/favicon.jpeg" alt="icon" width="100" height="100">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="@/assets/background.png">
+          <div class="carousel-caption">
+            <h4 class="responsiveText display-2 txt"><center> Order your food and pick it up anytime you want! </center></h4>
+            <b-button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg" href="/login">
+              Log In
+              </b-button>
+              &nbsp;
+              <b-button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg" href="/register">
+                Register
+              </b-button>
+              <button v-if="checkLoggedIn() || checkEmp()"  @click="logUserOut()" class="btn btn-primary btn-lg">
+                Log out
+              </button>
+          </div>
+      </div>
     </div>
-
-    <div class="wd">
-
-        <h1> ON FIRE</h1>
-
-        <h4><center> Order you food and pick it up any time you want!</center></h4>
-        <br/>
-
-        <center>
-        <button v-if="!checkLoggedIn() && !checkEmp() " class="order-button text-center">
-            <router-link to="/login">Log In</router-link>
-        </button>
-        </center>
-
-    </div>
-  </div>
   </body>
-
 </template>
 
 <script>
@@ -45,66 +42,49 @@ export default {
         return false
       }
       return true
+    },
+    logUserOut() {
+      localStorage.removeItem('jwt')
+      localStorage.removeItem('jwtemp')
+      this.$router.push('/login')
     }
   }
 }
 </script>
 
 <style scoped>
-  body{
-            font-family: latha;
-            color:white;
-           ;
+.carousel-inner img{
+  width: 100%;
+  height: 100%;
 }
-
-.wd{
-            width: 1000px;
-            height: 539px;
-            opacity: 0.8;
-            padding-top: 100%;
-            padding: 55px;
-            position:absolute;
-            top:50%;
-            left:50%;
-            background-color: black;
-            margin-top: -300px; /* this is half the height of your div*/
-            margin-left:-500px; /*this is half of width of your div*/
-        }
- .wd h1{
-            text-align: center;
-            text-transform: uppercase;
-            font-weight: 100px;
-        }
-
-        .wd h4{
-            text-align: justify;
-            color:darkgray;
-            font-weight: normal;
-        }
-
-        .wd h2{
-            text-align: center;
-            text-transform: uppercase;
-            font-weight: normal;
-            margin: 40px auto;
-        }
-
-        .top-icon{
-            position: relative;
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            margin-left: -4;
-        }
-        .order-button{
-            background-color: blanchedalmond;
-            color:white;
-            padding:10px;
-            margin:-14px auto;
-            padding-left: 50px;
-            padding-right: 50px;
-            text-align: center;
-
-        }
-
+.carousel-caption{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.carousel-caption h1{
+  font-size: 500%;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 10px #000;
+}
+.whitefont{
+  text-decoration-color: white;
+}
+.pushDown {
+  margin-bottom: 300px;
+  border-top: transparent;
+}
+.txt {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+@media screen and (max-width: 601px) {
+  .responsiveText{
+    font-size: 80px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .responsiveText{
+    font-size: 30px;
+  }
+}
 </style>

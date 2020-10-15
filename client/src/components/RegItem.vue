@@ -9,7 +9,7 @@
             </div>
             <div class="col-12">
               <div class="logForm">
-                <form @submit.prevent="loginUser">
+                <form @submit.prevent="registerUser()">
                   <div class="h-100 row align-items-center">
                     <div class="col">
                       <input
@@ -27,15 +27,11 @@
                         class="text-center"
                       /><br />
                       <center>
-                        <b-button type="submit" class="logbtn">Log in</b-button>
+                        <b-button type="submit" class="logbtn">Register</b-button>
                         <div class="divider" />
                         <b-button href="/" type="button" class="btn">Cancel</b-button>
                       </center>
                       <br />
-                      <div class="empColor">
-                        Are you an Employee?
-                        <router-link to="/empLogin"> Click Here </router-link>
-                      </div>
                     </div>
                   </div>
                 </form>
@@ -49,6 +45,7 @@
 </template>
 
 <script>
+import { Api } from '@/Api'
 const swal = require('sweetalert')
 
 export default {
@@ -61,22 +58,23 @@ export default {
     }
   },
   methods: {
-    async loginUser() {
-      try {
-        const response = await this.$http.post('/users/login', this.newUser)
-        const token = response.data.token
-        localStorage.setItem('jwt', token)
-        if (token) {
-          swal('Success', 'Login Successful', 'success')
-          this.$router.push('/')
-        }
-      } catch (err) {
-        swal('Error', 'Something Went Wrong', 'error')
-        console.log(err.response)
-      }
+    registerUser() {
+      Api.post('/users', this.newUser)
+        .then(response => {
+          swal('Success', 'Registeration Successful', 'success')
+          this.$router.push('/login')
+        })
+        .catch(error => {
+          console.log(error)
+          swal('Error', 'Something Went Wrong', 'error')
+        })
+        .then(() => {
+          // This code is always executed (after success or error).
+        })
     }
   }
 }
+
 </script>
 
 <style scoped>

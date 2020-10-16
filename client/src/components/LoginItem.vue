@@ -69,6 +69,7 @@ export default {
         if (token) {
           swal('Success', 'Login Successful', 'success')
           this.$router.push('/')
+          location.reload()
         }
       } catch (err) {
         swal('Error', 'Something Went Wrong', 'error')

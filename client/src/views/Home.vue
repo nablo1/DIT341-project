@@ -46,7 +46,8 @@ export default {
     logUserOut() {
       localStorage.removeItem('jwt')
       localStorage.removeItem('jwtemp')
-      this.$router.push('/login')
+      this.$router.push('/')
+      location.reload()
     }
   }
 }

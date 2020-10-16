@@ -12,9 +12,9 @@
               <b-button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg" href="/register">
                 Register
               </b-button>
-              <button v-if="checkLoggedIn() || checkEmp()"  @click="logUserOut()" class="btn btn-primary btn-lg">
+              <b-button v-if="checkLoggedIn() || checkEmp()"  @click="logUserOut()" type="button" class="whitefont btn btn-primary btn-lg">
                 Log out
-              </button>
+              </b-button>
           </div>
       </div>
     </div>
@@ -69,7 +69,7 @@ export default {
   text-shadow: 1px 1px 10px #000;
 }
 .whitefont{
-  text-decoration-color: white;
+  color: white;
 }
 .pushDown {
   margin-bottom: 300px;
@@ -78,6 +78,7 @@ export default {
 .txt {
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
 @media screen and (max-width: 601px) {
   .responsiveText{
     font-size: 80px;

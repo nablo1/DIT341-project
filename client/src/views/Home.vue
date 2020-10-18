@@ -5,14 +5,14 @@
           <img src="@/assets/background.png">
           <div class="carousel-caption">
             <h4 class="responsiveText display-2 txt"><center> Order your food and pick it up anytime you want! </center></h4>
-            <b-button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg" href="/login">
+            <b-button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg responsiveButton" href="/login">
               Log In
               </b-button>
               &nbsp;
-              <b-button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg" href="/register">
+              <b-button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg responsiveButton" href="/register">
                 Register
               </b-button>
-              <b-button v-if="checkLoggedIn() || checkEmp()"  @click="logUserOut()" type="button" class="whitefont btn btn-primary btn-lg">
+              <b-button v-if="checkLoggedIn() || checkEmp()"  @click="logUserOut()" type="button" class="responsiveButton whitefont btn btn-primary btn-lg ">
                 Log out
               </b-button>
           </div>
@@ -79,14 +79,24 @@ export default {
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-@media screen and (max-width: 601px) {
+@media screen and (max-width: 1050px) {
   .responsiveText{
-    font-size: 80px;
+    font-size: 50px;
   }
 }
 @media screen and (max-width: 600px) {
   .responsiveText{
     font-size: 30px;
+    margin-top: -55px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .responsiveText{
+    font-size: 25px;
+    margin-top: -50px;
+  }
+  .responsiveButton{
+    height: 40px;
   }
 }
 </style>

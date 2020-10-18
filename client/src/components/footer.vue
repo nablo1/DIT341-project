@@ -3,12 +3,12 @@
   <div class="container-fluid padding">
     <div class="row text-center">
       <div class="col-md-4">
-        <p>Address</p>
+        <h5> <b> Address</b> </h5>
         <hr class="light">
         <p>Lindholmspiren 5, 402 78 Göteborg</p>
       </div>
       <div class="col-md-4">
-        <p>Opening Hours</p>
+        <h5> <b> Oponing Hours </b> </h5>
         <hr class="light">
         <p>Mon-Fri: 10AM - 10PM
           <br>
@@ -16,7 +16,7 @@
         </p>
       </div>
       <div class="col-md-4">
-        <p>Contact Us</p>
+        <h5> <b> Contact Us</b> </h5>
         <hr class="light">
         <p>Tel: 0520–33 44 55
           <br>
@@ -25,7 +25,7 @@
       </div>
       <div class="col-12">
         <hr class="light">
-        <h5>&copy; OnFire!</h5>
+        <h5><b> &copy; OnFire! </b></h5>
       </div>
     </div>
   </div>

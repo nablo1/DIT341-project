@@ -102,28 +102,4 @@ function employeeToken(req, res, next) {
 
 }
 
-
-
-router.get('/api/orders', function (req, res, next) {
-
-    Order.find(function (err, orders) {
-        if (!orders) {
-
-            return res.status(404).json({
-                message: "no orders"
-            });
-        }
-        res.status(200).json({ 'orders': orders });
-    }).populate([{
-        path: 'items',
-        model: 'Item',
-        path: 'customer',
-        model: 'User'
-    },
-    ]).catch(err => {
-
-        res.status(500).json({ error: err });
-    });
-});
-
 module.exports = router;

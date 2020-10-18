@@ -54,6 +54,7 @@ export default {
       Api.delete('/items')
         .then((response) => {
           swal('Success', 'Items deleted', 'success')
+          location.reload()
         })
         .catch((error) => {
           console.error(error)

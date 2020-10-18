@@ -11,15 +11,13 @@
                <div>
                   <form @submit.prevent="updateEmail">
               <input v-model="newEmail.email" class="input" type="text" placeholder="New Email" required>
-              <b-button type="submit" variant="primary">Update Email</b-button>
+              <b-button type="submit" variant="primary">Update</b-button>
             </form>
             <div class="divider" />
             <form @submit.prevent="updatePassword">
               <input v-model="newPassword.password" class="input" type="text" placeholder="New Password" required>
-              <b-button type="submit" variant="primary">Update Password</b-button>
-              <div class="divider" />
+              <b-button type="submit" variant="primary">Update</b-button>
             </form>
-            <div class="divider" />
             <b-button type="button" variant="outline-primary" :href="'/users/' + this.userId">Back to account</b-button>
                </div>
               </div>

@@ -8,8 +8,8 @@
               item:  {{item._id.name}},
               quantity: {{item.quantity}}
               <hr class="light">
-              <br> <br> <br>
             </div>
+            <br> <br>
         </div>
     </div>
 </template>

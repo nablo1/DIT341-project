@@ -79,15 +79,15 @@ export default {
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-@media screen and (max-width: 601px) {
+@media screen and (max-width: 1050px) {
   .responsiveText{
-    font-size: 80px;
+    font-size: 50px;
   }
 }
 @media screen and (max-width: 600px) {
   .responsiveText{
     font-size: 30px;
-    margin-top: -54.5px;
+    margin-top: -55px;
   }
 }
 </style>

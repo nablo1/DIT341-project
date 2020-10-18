@@ -41,7 +41,6 @@ footer{
   color: #d5d5d5;
   padding-top: 2rem;
   position: relative;
-  padding-bottom: 170px;
 }
 hr.light {
   border-top: 1px solid #d5d5d5;

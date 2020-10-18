@@ -9,10 +9,10 @@
               Log In
               </b-button>
               &nbsp;
-              <b-button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg" href="/register">
+              <b-button v-if="!checkLoggedIn() && !checkEmp()" type="button" class="whitefont btn btn-primary btn-lg responsiveButton" href="/register">
                 Register
               </b-button>
-              <b-button v-if="checkLoggedIn() || checkEmp()"  @click="logUserOut()" type="button" class="responsiveButton whitefont btn btn-primary btn-lg">
+              <b-button v-if="checkLoggedIn() || checkEmp()"  @click="logUserOut()" type="button" class="responsiveButton whitefont btn btn-primary btn-lg ">
                 Log out
               </b-button>
           </div>
@@ -88,6 +88,15 @@ export default {
   .responsiveText{
     font-size: 30px;
     margin-top: -55px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .responsiveText{
+    font-size: 25px;
+    margin-top: -50px;
+  }
+  .responsiveButton{
+    height: 40px;
   }
 }
 </style>

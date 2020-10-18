@@ -87,7 +87,7 @@ export default {
 @media screen and (max-width: 600px) {
   .responsiveText{
     font-size: 30px;
-    margin-top: -55px;
+    margin-top: -54.5px;
   }
 }
 </style>

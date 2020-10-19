@@ -12,8 +12,10 @@
         <form @submit.prevent="updateItem">
               <input v-model="newItem.name" class="input" type="text" placeholder="Name" required>
               <input v-model="newItem.price" class="input" type="number" placeholder="Price" required>
+              <br>
               <b-button type="submit" variant="primary">Update item</b-button>
             </form>
+            <br>
             <b-button type="button" variant="outline-primary" :href="'/menu/' + this.itemId">Back to item</b-button>
     </div>
               </div>
